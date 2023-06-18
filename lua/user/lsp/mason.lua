@@ -1,5 +1,7 @@
 local servers = {
 	"lua_ls",
+  "ltex",
+
 }
 
 local settings = {

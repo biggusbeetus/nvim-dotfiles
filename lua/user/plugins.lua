@@ -43,6 +43,8 @@ return packer.startup(function(use)
   use "wbthomason/packer.nvim"
   use "nvim-lua/plenary.nvim"
 
+  use 'lervag/vimtex'
+
   use "tpope/vim-repeat"
   use "ggandor/leap.nvim"
   use {
