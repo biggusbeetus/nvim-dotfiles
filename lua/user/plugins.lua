@@ -43,11 +43,22 @@ return packer.startup(function(use)
   use "wbthomason/packer.nvim"
   use "nvim-lua/plenary.nvim"
 
-  -- Easymotion plz
-  use "easymotion/vim-easymotion"
+  use "tpope/vim-repeat"
+  use "ggandor/leap.nvim"
+  use {
+    "FluxxField/bionic-reading.nvim",
+    config = function()
+      require('bionic-reading').setup()
+    end
+    }
 
   -- Themes
   use {"catppuccin/nvim", as = "cattpuccin"}
+  use({
+	  'rose-pine/neovim',
+	  as = 'rose-pine',
+  })
+
 
   -- File explorer plz
   use 'nvim-tree/nvim-tree.lua'

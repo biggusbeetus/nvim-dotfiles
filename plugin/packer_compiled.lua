@@ -79,6 +79,12 @@ _G.packer_plugins = {
     path = "/home/kykeonaut/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
+  ["bionic-reading.nvim"] = {
+    config = { "\27LJ\2\n<\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\19bionic-reading\frequire\0" },
+    loaded = true,
+    path = "/home/kykeonaut/.local/share/nvim/site/pack/packer/start/bionic-reading.nvim",
+    url = "https://github.com/FluxxField/bionic-reading.nvim"
+  },
   cattpuccin = {
     loaded = true,
     path = "/home/kykeonaut/.local/share/nvim/site/pack/packer/start/cattpuccin",
@@ -123,6 +129,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/kykeonaut/.local/share/nvim/site/pack/packer/start/friendly-snippets",
     url = "https://github.com/rafamadriz/friendly-snippets"
+  },
+  ["leap.nvim"] = {
+    loaded = true,
+    path = "/home/kykeonaut/.local/share/nvim/site/pack/packer/start/leap.nvim",
+    url = "https://github.com/ggandor/leap.nvim"
   },
   ["mason-lspconfig.nvim"] = {
     loaded = true,
@@ -169,14 +180,23 @@ _G.packer_plugins = {
     path = "/home/kykeonaut/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
-  ["vim-easymotion"] = {
+  ["rose-pine"] = {
     loaded = true,
-    path = "/home/kykeonaut/.local/share/nvim/site/pack/packer/start/vim-easymotion",
-    url = "https://github.com/easymotion/vim-easymotion"
+    path = "/home/kykeonaut/.local/share/nvim/site/pack/packer/start/rose-pine",
+    url = "https://github.com/rose-pine/neovim"
+  },
+  ["vim-repeat"] = {
+    loaded = true,
+    path = "/home/kykeonaut/.local/share/nvim/site/pack/packer/start/vim-repeat",
+    url = "https://github.com/tpope/vim-repeat"
   }
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: bionic-reading.nvim
+time([[Config for bionic-reading.nvim]], true)
+try_loadstring("\27LJ\2\n<\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\19bionic-reading\frequire\0", "config", "bionic-reading.nvim")
+time([[Config for bionic-reading.nvim]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

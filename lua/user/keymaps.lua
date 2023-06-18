@@ -1,9 +1,13 @@
 local opts = { noremap = true, silent = true }
 
-local term_opts = { silent = true }
-
 -- Shorten function name
 local keymap = vim.api.nvim_set_keymap
+
+local function map_keymap_to_modes(modes, lhs, rhs, options)
+  for _, mode in ipairs(modes) do
+    keymap(mode, lhs, rhs, options)
+  end
+end
 
 vim.g.mapleader = ";"
 vim.g.maplocalleader = ";"
