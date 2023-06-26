@@ -130,6 +130,11 @@ _G.packer_plugins = {
     path = "/home/kykeonaut/.local/share/nvim/site/pack/packer/start/friendly-snippets",
     url = "https://github.com/rafamadriz/friendly-snippets"
   },
+  harpoon = {
+    loaded = true,
+    path = "/home/kykeonaut/.local/share/nvim/site/pack/packer/start/harpoon",
+    url = "https://github.com/ThePrimeagen/harpoon"
+  },
   ["leap.nvim"] = {
     loaded = true,
     path = "/home/kykeonaut/.local/share/nvim/site/pack/packer/start/leap.nvim",

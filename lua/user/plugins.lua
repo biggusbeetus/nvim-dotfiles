@@ -59,6 +59,7 @@ return packer.startup(function(use)
 	  as = 'rose-pine',
   })
 
+  use 'ThePrimeagen/harpoon'
 
   -- File explorer plz
   use 'nvim-tree/nvim-tree.lua'
