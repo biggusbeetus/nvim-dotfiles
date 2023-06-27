@@ -56,3 +56,6 @@ keymap("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", opts)
 
 -- Lsp
 keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
+
+-- Go to config files
+vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.config/nvim/<CR>");
