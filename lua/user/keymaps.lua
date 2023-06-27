@@ -21,5 +21,5 @@ keymap("x", "<leader>p", [["_dP]], opts)
 -- next greatest remap ever : asbjornHaland
 multi_mode_keymap({"n", "v"}, "<leader>y", [["+y]], opts)
 keymap("n", "<leader>Y", [["+Y]], opts)
-keymap({"n", "v"}, "<leader>d", [["_d]], opts)
+multi_mode_keymap({"n", "v"}, "<leader>d", [["_d]], opts)
 
