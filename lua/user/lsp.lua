@@ -1,104 +1,99 @@
 local M = {
-  "neovim/nvim-lspconfig",
-  commit = "649137cbc53a044bffde36294ce3160cb18f32c7",
-  lazy = true,
-  dependencies = {
-    {
-      "hrsh7th/cmp-nvim-lsp",
-      commit = "0e6b2ed705ddcff9738ec4ea838141654f12eeef",
-    },
-  },
+	"VonHeikemen/lsp-zero.nvim",
+	branch = "v2.x",
+  event = "BufReadPre",
+	dependencies = {
+		-- LSP Support
+		{ "neovim/nvim-lspconfig", commit = "649137cbc53a044bffde36294ce3160cb18f32c7" },
+
+		-- Autocompletion
+		{
+			"hrsh7th/cmp-nvim-lsp",
+			commit = "0e6b2ed705ddcff9738ec4ea838141654f12eeef",
+		},
+		{
+			"hrsh7th/cmp-nvim-lsp",
+			commit = "0e6b2ed705ddcff9738ec4ea838141654f12eeef",
+		},
+	},
 }
 
 function M.config()
-  local cmp_nvim_lsp = require "cmp_nvim_lsp"
+	local lsp = require("lsp-zero")
 
-  local capabilities = vim.lsp.protocol.make_client_capabilities()
-  capabilities.textDocument.completion.completionItem.snippetSupport = true
-  capabilities = cmp_nvim_lsp.default_capabilities(M.capabilities)
+	lsp.preset("recommended")
 
-  local function lsp_keymaps(bufnr)
-    local opts = { noremap = true, silent = true }
-    local keymap = vim.api.nvim_buf_set_keymap
-    keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-    keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-    keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-    keymap(bufnr, "n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", opts)
-    keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", opts)
-    keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
-    keymap(bufnr, "n", "<leader>li", "<cmd>LspInfo<cr>", opts)
-    keymap(bufnr, "n", "<leader>lI", "<cmd>Mason<cr>", opts)
-    keymap(bufnr, "n", "<leader>la", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
-    keymap(bufnr, "n", "<leader>lj", "<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>", opts)
-    keymap(bufnr, "n", "<leader>lk", "<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>", opts)
-    keymap(bufnr, "n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", opts)
-    keymap(bufnr, "n", "<leader>ls", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-    keymap(bufnr, "n", "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
-  end
+	lsp.ensure_installed(require('utils').servers)
 
-  local lspconfig = require "lspconfig"
-  local on_attach = function(client, bufnr)
-    lsp_keymaps(bufnr)
-    require("illuminate").on_attach(client)
-  end
+	-- Fix Undefined global 'vim'
+	lsp.nvim_workspace()
 
-  for _, server in pairs(require("utils").servers) do
-    Opts = {
-      on_attach = on_attach,
-      capabilities = capabilities,
-    }
+	local cmp = require("cmp")
+	local cmp_select = { behavior = cmp.SelectBehavior.Select }
+	local cmp_mappings = lsp.defaults.cmp_mappings({
+		["<C-p>"] = cmp.mapping.select_prev_item(cmp_select),
+		["<C-n>"] = cmp.mapping.select_next_item(cmp_select),
+		["<C-y>"] = cmp.mapping.confirm({ select = true }),
+		["<C-Space>"] = cmp.mapping.complete(),
+	})
 
-    server = vim.split(server, "@")[1]
+	cmp_mappings["<Tab>"] = nil
+	cmp_mappings["<S-Tab>"] = nil
 
-    local require_ok, conf_opts = pcall(require, "settings." .. server)
-    if require_ok then
-      Opts = vim.tbl_deep_extend("force", conf_opts, Opts)
-    end
+	lsp.setup_nvim_cmp({
+		mapping = cmp_mappings,
+	})
 
-    lspconfig[server].setup(Opts)
-  end
+	lsp.set_preferences({
+		suggest_lsp_servers = false,
+		sign_icons = {
+			error = "E",
+			warn = "W",
+			hint = "H",
+			info = "I",
+		},
+	})
 
-  local signs = {
-    { name = "DiagnosticSignError", text = "" },
-    { name = "DiagnosticSignWarn", text = "" },
-    { name = "DiagnosticSignHint", text = "" },
-    { name = "DiagnosticSignInfo", text = "" },
-  }
+	lsp.on_attach(function(client, bufnr)
+		local opts = { buffer = bufnr, remap = false }
 
-  for _, sign in ipairs(signs) do
-    vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
-  end
+		vim.keymap.set("n", "gd", function()
+			vim.lsp.buf.definition()
+		end, opts)
+		vim.keymap.set("n", "K", function()
+			vim.lsp.buf.hover()
+		end, opts)
+		vim.keymap.set("n", "<leader>vws", function()
+			vim.lsp.buf.workspace_symbol()
+		end, opts)
+		vim.keymap.set("n", "<leader>vd", function()
+			vim.diagnostic.open_float()
+		end, opts)
+		vim.keymap.set("n", "[d", function()
+			vim.diagnostic.goto_next()
+		end, opts)
+		vim.keymap.set("n", "]d", function()
+			vim.diagnostic.goto_prev()
+		end, opts)
+		vim.keymap.set("n", "<leader>vca", function()
+			vim.lsp.buf.code_action()
+		end, opts)
+		vim.keymap.set("n", "<leader>vrr", function()
+			vim.lsp.buf.references()
+		end, opts)
+		vim.keymap.set("n", "<leader>vrn", function()
+			vim.lsp.buf.rename()
+		end, opts)
+		vim.keymap.set("i", "<C-h>", function()
+			vim.lsp.buf.signature_help()
+		end, opts)
+	end)
 
-  local config = {
-    -- disable virtual text
-    virtual_text = false,
-    -- show signs
-    signs = {
-      active = signs,
-    },
-    update_in_insert = true,
-    underline = true,
-    severity_sort = true,
-    float = {
-      focusable = false,
-      style = "minimal",
-      border = "rounded",
-      source = "always",
-      header = "",
-      prefix = "",
-      suffix = "",
-    },
-  }
+	lsp.setup()
 
-  vim.diagnostic.config(config)
-
-  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-    border = "rounded",
-  })
-
-  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-    border = "rounded",
-  })
+	vim.diagnostic.config({
+		virtual_text = true,
+	})
 end
 
 return M
