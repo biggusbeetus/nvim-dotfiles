@@ -12,14 +12,17 @@ local options ={
   incsearch = true,
   termguicolors = true,
   scrolloff = 8,
-  -- signcolumn = "yes",
+  signcolumn = "yes",
   updatetime = 50,
-  -- colorcolumn = "80",
+  colorcolumn = "80",
 }
 
 local globals = {
   mapleader = ";",
   maplocalleader = ";",
+  netrw_browse_split = 0,
+  netrw_banner = 0,
+  netrw_winsize = 25,
 }
 
 for k, v in pairs(options) do

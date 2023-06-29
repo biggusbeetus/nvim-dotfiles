@@ -1,7 +1,7 @@
 local M = {
 	"folke/trouble.nvim",
 	dependencies = { "nvim-tree/nvim-web-devicons" },
-	lazy = false,
+  event = "Bufenter",
 	config = {
 		severity = nil,
 		use_diagnostic_signs = true,
