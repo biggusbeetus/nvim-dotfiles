@@ -1,65 +1,78 @@
 local opts = { noremap = true, silent = true }
 
-local keymap = vim.keymap.set
+KEYMAP = vim.keymap.set
 
-keymap("v", "J", ":m '>+1<CR>gv=gv")
-keymap("v", "K", ":m '<-2<CR>gv=gv")
+KEYMAP("v", "J", ":m '>+1<CR>gv=gv")
+KEYMAP("v", "K", ":m '<-2<CR>gv=gv")
 
-keymap("n", "J", "mzJ`z")
-keymap("n", "<C-d>", "<C-d>zz")
-keymap("n", "<C-u>", "<C-u>zz")
-keymap("n", "n", "nzzzv")
-keymap("n", "N", "Nzzzv")
+KEYMAP("n", "J", "mzJ`z")
+KEYMAP("n", "<C-d>", "<C-d>zz")
+KEYMAP("n", "<C-u>", "<C-u>zz")
+KEYMAP("n", "n", "nzzzv")
+KEYMAP("n", "N", "Nzzzv")
 
-keymap("n", "<C-h>", "<C-w>h", opts)
-keymap("n", "<C-j>", "<C-w>j", opts)
-keymap("n", "<C-k>", "<C-w>k", opts)
-keymap("n", "<C-l>", "<C-w>l", opts)
+KEYMAP("n", "<C-h>", "<C-w>h", opts)
+KEYMAP("n", "<C-j>", "<C-w>j", opts)
+KEYMAP("n", "<C-k>", "<C-w>k", opts)
+KEYMAP("n", "<C-l>", "<C-w>l", opts)
 
 -- Navigate buffers
-keymap("n", "<S-l>", ":bnext<CR>", opts)
-keymap("n", "<S-h>", ":bprevious<CR>", opts)
+KEYMAP("n", "<S-l>", ":bnext<CR>", opts)
+KEYMAP("n", "<S-h>", ":bprevious<CR>", opts)
+KEYMAP("n", "<leader>c", ":bd<CR>", opts)
 
 -- Greatest keymap ever: ThePrimeagen
-keymap("x", "<leader>p", [["_dP]], opts)
+KEYMAP("x", "<leader>p", [["_dP]], opts)
 -- next greatest remap ever : asbjornHaland
-keymap({"n", "v"}, "<leader>y", [["+y]], opts)
-keymap("n", "<leader>Y", [["+Y]], opts)
-keymap({"n", "v"}, "<leader>d", [["_d]], opts)
+KEYMAP({ "n", "v" }, "<leader>y", [["+y]], opts)
+KEYMAP("n", "<leader>Y", [["+Y]], opts)
+KEYMAP({ "n", "v" }, "<leader>d", [["_d]], opts)
 
 -- Harpoon keymaps
 local mark = require("harpoon.mark")
 local ui = require("harpoon.ui")
 
-keymap("n", "<leader>a", mark.add_file, opts)
-keymap("n", "<C-e>", ui.toggle_quick_menu, opts)
-keymap("n", "<leader>1", function() ui.nav_file(1) end, opts)
-keymap("n", "<leader>2", function() ui.nav_file(2) end, opts)
-keymap("n", "<leader>3", function() ui.nav_file(3) end, opts)
-keymap("n", "<leader>4", function() ui.nav_file(4) end, opts)
+KEYMAP("n", "<leader>a", mark.add_file, opts)
+KEYMAP("n", "<C-e>", ui.toggle_quick_menu, opts)
+KEYMAP("n", "<leader>1", function()
+	ui.nav_file(1)
+end, opts)
+KEYMAP("n", "<leader>2", function()
+	ui.nav_file(2)
+end, opts)
+KEYMAP("n", "<leader>3", function()
+	ui.nav_file(3)
+end, opts)
+KEYMAP("n", "<leader>4", function()
+	ui.nav_file(4)
+end, opts)
 
 -- Leap
-require('leap').add_default_mappings()
+require("leap").add_default_mappings()
 
--- Nvimtree
-keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
+-- Netrw
+KEYMAP("n", "<leader>e", "<cmd>Explore<CR>", opts)
 
 -- Telescope
-keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
-keymap("n", "<leader>ft", ":Telescope live_grep<CR>", opts)
-keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
-keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
+KEYMAP("n", "<leader>ff", ":Telescope find_files<CR>", opts)
+KEYMAP("n", "<leader>ft", ":Telescope live_grep<CR>", opts)
+KEYMAP("n", "<leader>fg", ":Telescope git_files<CR>", opts)
+KEYMAP("n", "<leader>fb", ":Telescope buffers<CR>", opts)
+KEYMAP("n", "<leader>fp", ":Telescope projects<CR>", opts)
 
 -- Trouble
-keymap("n", "<leader>xx", "<cmd>TroubleToggle<cr>", opts)
-keymap("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", opts)
-keymap("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", opts)
-keymap("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>", opts)
-keymap("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", opts)
-keymap("n", "gR", "<cmd>TroubleToggle lsp_references<cr>", opts)
+KEYMAP("n", "<leader>xx", "<cmd>TroubleToggle<cr>", opts)
+KEYMAP("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", opts)
+KEYMAP("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", opts)
+KEYMAP("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>", opts)
+KEYMAP("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", opts)
+KEYMAP("n", "gR", "<cmd>TroubleToggle lsp_references<cr>", opts)
 
--- Lsp 
-keymap("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts) 
+-- Lsp
+KEYMAP("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
+
+-- Fugitive
+KEYMAP("n", "<leader>gs", vim.cmd.Git)
 
 -- Go to config files
-vim.keymap.set("n", "<leader>vpp", "<cmd>e ~/.config/nvim/<CR>");
+KEYMAP("n", "<leader>vpp", "<cmd>e ~/.config/nvim/<CR>")
