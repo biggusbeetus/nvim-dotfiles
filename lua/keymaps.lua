@@ -72,7 +72,11 @@ KEYMAP("n", "gR", "<cmd>TroubleToggle lsp_references<cr>", opts)
 KEYMAP("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
 
 -- Fugitive
-KEYMAP("n", "<leader>gs", vim.cmd.Git)
+KEYMAP("n", "<leader>gs", vim.cmd.Git, opts)
 
 -- Go to config files
-KEYMAP("n", "<leader>vpp", "<cmd>e ~/.config/nvim/<CR>")
+KEYMAP("n", "<leader>vpp", "<cmd>e ~/.config/nvim/<CR>", opts)
+
+-- Undotree
+KEYMAP("n", "<leader>u", vim.cmd.UndotreeToggle, opts)
+
