@@ -80,3 +80,6 @@ KEYMAP("n", "<leader>vpp", "<cmd>e ~/.config/nvim/<CR>", opts)
 -- Undotree
 KEYMAP("n", "<leader>u", vim.cmd.UndotreeToggle, opts)
 
+-- Cellular automaton
+KEYMAP("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>", opts);
+KEYMAP("n", "<leader>ol", "<cmd>CellularAutomaton game_of_life<CR>", opts);
