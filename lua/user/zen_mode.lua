@@ -13,8 +13,6 @@ function M.config()
       },
     })
     require("zen-mode").toggle()
-    vim.wo.wrap = true
-    vim.wo.number = false
   end)
 end
 
