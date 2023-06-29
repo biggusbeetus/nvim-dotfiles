@@ -27,12 +27,11 @@ function M.config()
 
     highlight = {
       enable = true,       -- false will disable the whole extension
-      disable = { }, -- list of language that will be disabled
     },
     autopairs = {
       enable = true,
     },
-    indent = { enable = true, disable = { } },
+    indent = { enable = true, disable = {} },
 
     context_commentstring = {
       enable = true,
