@@ -1,5 +1,6 @@
 local options ={
   number = true,
+  numberwidth= 2,
   expandtab = true,
   cindent = true,
   tabstop = 2,
