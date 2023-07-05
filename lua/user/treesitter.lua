@@ -20,18 +20,18 @@ function M.config()
   local configs = require "nvim-treesitter.configs"
 
   configs.setup {
-    ensure_installed = { "lua", "markdown", "markdown_inline", "bash", "latex"},
+    ensure_installed = { "lua", "markdown", "markdown_inline", "bash", "latex" },
     ignore_install = { "" },
     sync_install = false,
 
     highlight = {
-      enable = true,       -- false will disable the whole extension
-      disable = { }, -- list of language that will be disabled
+      enable = true, -- false will disable the whole extension
+      disable = {},  -- list of language that will be disabled
     },
     autopairs = {
       enable = true,
     },
-    indent = { enable = true, disable = { } },
+    indent = { enable = true, disable = {} },
 
     context_commentstring = {
       enable = true,

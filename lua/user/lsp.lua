@@ -1,7 +1,7 @@
 local M = {
   "VonHeikemen/lsp-zero.nvim",
   branch = "v2.x",
-  event = "VeryLazy",
+  event = "BufReadPre",
   dependencies = {
     -- LSP Support
     { "neovim/nvim-lspconfig", commit = "649137cbc53a044bffde36294ce3160cb18f32c7" },
@@ -51,37 +51,44 @@ function M.config()
   lsp.on_attach(function(client, bufnr)
     local opts = { buffer = bufnr, remap = false }
 
-    vim.keymap.set("n", "gd", function()
+    KEYMAP("n", "gd", function()
       vim.lsp.buf.definition()
     end, opts)
-    vim.keymap.set("n", "K", function()
+    KEYMAP("n", "K", function()
       vim.lsp.buf.hover()
     end, opts)
-    vim.keymap.set("n", "<leader>vws", function()
+    KEYMAP("n", "<leader>vws", function()
       vim.lsp.buf.workspace_symbol()
     end, opts)
-    vim.keymap.set("n", "<leader>vd", function()
+    KEYMAP("n", "<leader>vd", function()
       vim.diagnostic.open_float()
     end, opts)
-    vim.keymap.set("n", "[d", function()
+    KEYMAP("n", "[d", function()
       vim.diagnostic.goto_next()
     end, opts)
-    vim.keymap.set("n", "]d", function()
+    KEYMAP("n", "]d", function()
       vim.diagnostic.goto_prev()
     end, opts)
-    vim.keymap.set("n", "<leader>vca", function()
+    KEYMAP("n", "<leader>vca", function()
       vim.lsp.buf.code_action()
     end, opts)
-    vim.keymap.set("n", "<leader>vrr", function()
+    KEYMAP("n", "<leader>vrr", function()
       vim.lsp.buf.references()
     end, opts)
-    vim.keymap.set("n", "<leader>vrn", function()
+    KEYMAP("n", "<leader>vrn", function()
       vim.lsp.buf.rename()
     end, opts)
-    vim.keymap.set("i", "<C-h>", function()
+    KEYMAP("i", "<C-h>", function()
       vim.lsp.buf.signature_help()
     end, opts)
   end)
+
+  for server in pairs(require("utils").servers) do
+    local require_ok, conf_opts = pcall(require, "settings." .. server)
+    if require_ok then
+      lsp.configure(server, conf_opts)
+    end
+  end
 
   lsp.setup()
 
