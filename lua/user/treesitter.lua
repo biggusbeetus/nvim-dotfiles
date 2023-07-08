@@ -25,12 +25,8 @@ function M.config()
     sync_install = false,
 
     highlight = {
-<<<<<<< HEAD
-      enable = true,       -- false will disable the whole extension
-=======
-      enable = true, -- false will disable the whole extension
-      disable = {},  -- list of language that will be disabled
->>>>>>> 025c1e26ff9dc286766ddbff28c4f177e7e19c52
+      enable = true,             
+      disable = {},  
     },
     autopairs = {
       enable = true,
