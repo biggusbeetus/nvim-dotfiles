@@ -23,6 +23,8 @@ function M.config()
 		debug = false,
 		sources = {
 			formatting.stylua,
+      formatting.latexindent,
+      diagnostics.vale,
 --			diagnostics.luacheck,
 		},
 	})

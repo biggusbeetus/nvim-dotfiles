@@ -19,7 +19,7 @@ function M.config()
 
   lsp.preset("recommended")
 
-  lsp.ensure_installed(require("utils").servers)
+  lsp.ensure_installed(require("lsp_dependencies").servers)
 
   -- Fix Undefined global 'vim'
   --lsp.nvim_workspace()
