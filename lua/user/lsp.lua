@@ -4,7 +4,9 @@ local M = {
   event = "BufReadPre",
   dependencies = {
     -- LSP Support
-    { "neovim/nvim-lspconfig", commit = "649137cbc53a044bffde36294ce3160cb18f32c7" },
+    { "neovim/nvim-lspconfig",
+      event = "BufReadPre",
+      commit = "649137cbc53a044bffde36294ce3160cb18f32c7" },
     {
       "hrsh7th/cmp-nvim-lsp",
       commit = "0e6b2ed705ddcff9738ec4ea838141654f12eeef",
@@ -20,7 +22,7 @@ function M.config()
   lsp.ensure_installed(require("utils").servers)
 
   -- Fix Undefined global 'vim'
-  lsp.nvim_workspace()
+  --lsp.nvim_workspace()
 
   local cmp = require("cmp")
   local cmp_select = { behavior = cmp.SelectBehavior.Select }
@@ -83,12 +85,11 @@ function M.config()
     end, opts)
   end)
 
-  for server in pairs(require("utils").servers) do
-    local require_ok, conf_opts = pcall(require, "settings." .. server)
+  --for server in pairs(require("utils").servers) do
+    local require_ok, conf_opts = pcall(require, "settings.lua_ls")
     if require_ok then
-      lsp.configure(server, conf_opts)
+      lsp.configure("lua_ls", conf_opts)
     end
-  end
 
   lsp.setup()
 
