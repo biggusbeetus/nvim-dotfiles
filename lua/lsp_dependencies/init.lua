@@ -1,7 +1,7 @@
 local M = {}
 
 M.servers = {
-  "lua_ls",
+  "lua-lsp",
   "bashls",
 }
 
