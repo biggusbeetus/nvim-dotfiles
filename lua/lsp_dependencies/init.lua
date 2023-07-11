@@ -5,4 +5,8 @@ M.servers = {
   "bashls",
 }
 
+M.null_ls = {
+ "stylua",
+}
+
 return M

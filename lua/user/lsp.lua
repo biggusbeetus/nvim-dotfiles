@@ -19,7 +19,7 @@ function M.config()
 
   lsp.preset("recommended")
 
-  lsp.ensure_installed(require("utils").servers)
+  lsp.ensure_installed(require("lsp_dependencies").servers)
 
   -- Fix Undefined global 'vim'
   --lsp.nvim_workspace()
@@ -85,11 +85,13 @@ function M.config()
     end, opts)
   end)
 
-  --for server in pairs(require("utils").servers) do
-    local require_ok, conf_opts = pcall(require, "settings.lua_ls")
+  for server in pairs(require("lsp_dependencies").servers) do
+    local require_ok, conf_opts = pcall(require, "settings" .. server)
     if require_ok then
-      lsp.configure("lua_ls", conf_opts)
+      print(server)
+      lsp.configure(server, conf_opts)
     end
+  end
 
   lsp.setup()
 
