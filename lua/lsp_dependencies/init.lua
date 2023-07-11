@@ -1,12 +1,13 @@
 local M = {}
 
 M.servers = {
-  "lua-lsp",
   "bashls",
+  "html",
+  "cssls",
 }
 
 M.null_ls = {
- "stylua",
+  "prettier",
 }
 
 return M
