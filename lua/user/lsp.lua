@@ -85,10 +85,9 @@ function M.config()
     end, opts)
   end)
 
-  for server in pairs(require("lsp_dependencies").servers) do
-    local require_ok, conf_opts = pcall(require, "settings" .. server)
+  for _, server in pairs(require("lsp_dependencies").servers) do
+    local require_ok, conf_opts = pcall(require, "settings." .. server)
     if require_ok then
-      print(server)
       lsp.configure(server, conf_opts)
     end
   end
