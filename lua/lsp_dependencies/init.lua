@@ -4,6 +4,7 @@ M.servers = {
   "bashls",
   "html",
   "cssls",
+  "eslint",
 }
 
 M.null_ls = {

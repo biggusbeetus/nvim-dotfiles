@@ -27,3 +27,14 @@ autocmd("filetype", {
 		KEYMAP("n", "<leader>rd", recursive_delete, opts)
 	end,
 })
+
+autocmd("BufWritePost", {
+  group = bbalanza_augroup,
+  pattern = {"*.js","*.html", "*.css", "*.ts"},
+  callback = function ()
+    local cwd = vim.loop.cwd()
+    local www = "/workspace/var/www/balanza.dev/"
+    vim.cmd("!rm -rf " .. www .. "*")
+    vim.cmd("!cp -r " .. cwd .. "/src/* " .. www)
+  end
+})

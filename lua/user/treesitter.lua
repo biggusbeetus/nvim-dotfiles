@@ -20,7 +20,7 @@ function M.config()
   local configs = require "nvim-treesitter.configs"
 
   configs.setup {
-    ensure_installed = { "lua", "markdown", "markdown_inline", "bash", "latex" },
+    ensure_installed = { "lua", "markdown", "markdown_inline", "bash", "latex", "javascript", "typescript" },
     ignore_install = { "" },
     sync_install = false,
 

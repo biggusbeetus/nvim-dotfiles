@@ -16,13 +16,14 @@ local M = {
 
 function M.config()
   local lsp = require("lsp-zero")
+  local lspconfig = require("lspconfig")
 
   lsp.preset("recommended")
 
   lsp.ensure_installed(require("lsp_dependencies").servers)
 
   -- Fix Undefined global 'vim'
-  --lsp.nvim_workspace()
+  lsp.nvim_workspace()
 
   local cmp = require("cmp")
   local cmp_select = { behavior = cmp.SelectBehavior.Select }
@@ -85,10 +86,9 @@ function M.config()
     end, opts)
   end)
 
-  for server in pairs(require("lsp_dependencies").servers) do
-    local require_ok, conf_opts = pcall(require, "settings" .. server)
+  for _, server in pairs(require("lsp_dependencies").servers) do
+    local require_ok, conf_opts = pcall(require, "settings." .. server)
     if require_ok then
-      print(server)
       lsp.configure(server, conf_opts)
     end
   end
