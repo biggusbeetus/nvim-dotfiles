@@ -1,6 +1,10 @@
 local M = {
   "hrsh7th/nvim-cmp",
   commit = "cfafe0a1ca8933f7b7968a287d39904156f2c57d",
+  event = {
+    "InsertEnter",
+    "CmdlineEnter",
+  },
   dependencies = {
     {
       "hrsh7th/cmp-buffer",
@@ -33,14 +37,11 @@ local M = {
       commit = "f3491638d123cfd2c8048aefaf66d246ff250ca6",
     },
   },
-  event = {
-    "InsertEnter",
-    "CmdlineEnter",
-  },
 }
 
 function M.config()
   local cmp = require "cmp"
+
   local luasnip = require "luasnip"
   require("luasnip/loaders/from_vscode").lazy_load()
 

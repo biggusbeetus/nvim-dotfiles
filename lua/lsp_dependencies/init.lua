@@ -1,13 +1,14 @@
 local M = {}
 
 M.servers = {
-  "lua_ls",
-  "ltex",
+	"lua_ls",
+	"bashls",
+	"ltex-ls",
 }
 
 M.null_ls = {
-  "latexindent",
-  "vale",
+	"stylua",
+	"latexindent",
 }
 
 return M
