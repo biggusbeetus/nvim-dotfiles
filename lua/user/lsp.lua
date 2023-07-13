@@ -1,8 +1,7 @@
 local M = {
   "VonHeikemen/lsp-zero.nvim",
   branch = "v2.x",
-  lazy = true,
-  event = {"BufReadPre"},
+  lazy = false,
   dependencies = {
     -- LSP Support
     { "neovim/nvim-lspconfig",
