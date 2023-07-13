@@ -42,7 +42,11 @@ local M = {
 }
 
 function M.config()
+  local lsp_zero_cmp = require("lsp-zero.cmp")
+  lsp_zero_cmp.extend()
+
   local cmp = require "cmp"
+
   local luasnip = require "luasnip"
   require("luasnip/loaders/from_vscode").lazy_load()
 
