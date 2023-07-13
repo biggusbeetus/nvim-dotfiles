@@ -8,6 +8,7 @@ M.servers = {
 M.null_ls = {
 	"stylua",
 	"latexindent",
+  "vale"
 }
 
 return M
