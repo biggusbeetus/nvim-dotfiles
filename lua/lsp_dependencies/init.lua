@@ -2,8 +2,7 @@ local M = {}
 
 M.servers = {
 	"lua_ls",
-	"bashls",
-	"ltex-ls",
+	"ltex",
 }
 
 M.null_ls = {
