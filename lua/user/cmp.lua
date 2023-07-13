@@ -1,6 +1,10 @@
 local M = {
   "hrsh7th/nvim-cmp",
   commit = "cfafe0a1ca8933f7b7968a287d39904156f2c57d",
+  event = {
+    "InsertEnter",
+    "CmdlineEnter",
+  },
   dependencies = {
     {
       "hrsh7th/cmp-buffer",
@@ -21,7 +25,6 @@ local M = {
     {
       "L3MON4D3/LuaSnip",
       commit = "9bff06b570df29434a88f9c6a9cea3b21ca17208",
-      event = "InsertEnter",
       dependencies = {
         "rafamadriz/friendly-snippets",
         commit = "a6f7a1609addb4e57daa6bedc300f77f8d225ab7",
@@ -31,10 +34,10 @@ local M = {
       "hrsh7th/cmp-nvim-lua",
       commit = "f3491638d123cfd2c8048aefaf66d246ff250ca6",
     },
-  },
-  event = {
-    "InsertEnter",
-    "CmdlineEnter",
+    {
+      "hrsh7th/cmp-nvim-lsp",
+      commit = "0e6b2ed705ddcff9738ec4ea838141654f12eeef",
+    },
   },
 }
 
@@ -142,11 +145,11 @@ function M.config()
       end,
     },
     sources = {
-      { name = "nvim_lsp" },
       { name = "nvim_lua" },
       { name = "luasnip" },
       { name = "buffer" },
       { name = "path" },
+      { name = 'nvim_lsp' },
     },
     confirm_opts = {
       behavior = cmp.ConfirmBehavior.Replace,
