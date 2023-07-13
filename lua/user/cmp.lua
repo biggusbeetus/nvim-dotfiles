@@ -1,6 +1,10 @@
 local M = {
   "hrsh7th/nvim-cmp",
   commit = "cfafe0a1ca8933f7b7968a287d39904156f2c57d",
+  event = {
+    "InsertEnter",
+    "CmdlineEnter",
+  },
   dependencies = {
     {
       "hrsh7th/cmp-buffer",
@@ -31,15 +35,19 @@ local M = {
       "hrsh7th/cmp-nvim-lua",
       commit = "f3491638d123cfd2c8048aefaf66d246ff250ca6",
     },
-  },
-  event = {
-    "InsertEnter",
-    "CmdlineEnter",
+    {
+      "hrsh7th/cmp-nvim-lsp",
+      commit = "0e6b2ed705ddcff9738ec4ea838141654f12eeef",
+    },
   },
 }
 
 function M.config()
+  local lsp_zero_cmp = require("lsp-zero.cmp")
+  lsp_zero_cmp.extend()
+
   local cmp = require "cmp"
+
   local luasnip = require "luasnip"
   require("luasnip/loaders/from_vscode").lazy_load()
 
