@@ -23,8 +23,9 @@ local M = {
       commit = "9bff06b570df29434a88f9c6a9cea3b21ca17208",
       event = "InsertEnter",
       dependencies = {
-        "rafamadriz/friendly-snippets",
-        commit = "a6f7a1609addb4e57daa6bedc300f77f8d225ab7",
+        { "rafamadriz/friendly-snippets",
+          commit = "a6f7a1609addb4e57daa6bedc300f77f8d225ab7",
+        },
       },
     },
     {
