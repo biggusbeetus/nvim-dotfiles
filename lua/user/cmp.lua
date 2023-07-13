@@ -33,17 +33,10 @@ local M = {
       "hrsh7th/cmp-nvim-lua",
       commit = "f3491638d123cfd2c8048aefaf66d246ff250ca6",
     },
-    {
-      "hrsh7th/cmp-nvim-lsp",
-      commit = "0e6b2ed705ddcff9738ec4ea838141654f12eeef",
-    },
   },
 }
 
 function M.config()
-  local lsp_zero_cmp = require("lsp-zero.cmp")
-  lsp_zero_cmp.extend()
-
   local cmp = require "cmp"
 
   local luasnip = require "luasnip"
