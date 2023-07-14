@@ -44,12 +44,12 @@ autocmd("BufWritePost", {
 			args = { "--halt-on-error", "main" },
 		}, vim.schedule_wrap(function(code)
 				stdout:read_stop()
-				stderr:read_stop()
+        stderr:read_stop()
 				stdout:close()
 				stderr:close()
 				handle:close()
         if code == 1 then
-				  vim.notify(buffer, vim.log.levels.ERROR)
+				  vim.notify(buffer, vim.log.levels.WARN)
         else
           vim.notify("Latex compiled successfully!", vim.log.levels.INFO)
         end
@@ -65,7 +65,7 @@ autocmd("BufWritePost", {
 		uv.read_start(stdout, function(err, data)
 			assert(not err, err)
 			if data then
-				buffer = buffer .. data
+				buffer = data .. buffer
 			end
 		end)
 	end,
