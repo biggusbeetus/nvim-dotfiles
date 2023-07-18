@@ -23,6 +23,7 @@ function M.config()
     debug = false,
     sources = {
       formatting.stylua,
+      diagnostics.ansiblelint,
       --			diagnostics.luacheck,
     },
   })
