@@ -21,6 +21,10 @@ local M = {
       commit = "93e58e100f37ef4fb0f897deeed20599dae9d128",
       lazy = true,
     },
+    {
+      "jay-babu/mason-null-ls.nvim",
+      commit = "ae0c5fa57468ac65617f1bf821ba0c3a1e251f0c",
+    },
   },
 }
 
@@ -33,5 +37,9 @@ function M.config(lazyPlugin, opts)
     automatic_installation = true,
   })
 end
+
+  require("mason-null-ls").setup({
+    ensure_installed = dependencies.null_ls,
+  })
 
 return M
