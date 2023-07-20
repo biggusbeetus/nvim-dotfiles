@@ -1,8 +1,9 @@
-local credentials = require("credentials")
+local credentials = require("settings.credentials")
 
 return {
+  filetypes = { 'markdown', 'tex' },
   init_options = {
-    clientId = credentials["grammarly"]
-  }
+    clientId = credentials["grammarly"],
+  },
 }
 
