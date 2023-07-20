@@ -23,7 +23,6 @@ function M.config()
 		sources = {
 			formatting.stylua,
       formatting.latexindent,
-      diagnostics.vale,
 		},
 	})
 end
