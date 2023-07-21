@@ -36,10 +36,11 @@ function M.config(lazyPlugin, opts)
     ensure_installed = dependencies.servers,
     automatic_installation = true,
   })
-end
 
   require("mason-null-ls").setup({
     ensure_installed = dependencies.null_ls,
   })
+
+end
 
 return M
