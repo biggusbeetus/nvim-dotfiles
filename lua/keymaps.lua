@@ -54,10 +54,10 @@ require("leap").add_default_mappings()
 KEYMAP("n", "<leader>e", "<cmd>Explore<CR>", opts)
 
 -- Telescope
-KEYMAP("n", "<leader>ff", ":Telescope find_files<CR>", opts)
-KEYMAP("n", "<leader>ft", ":Telescope live_grep<CR>", opts)
-KEYMAP("n", "<leader>fg", ":Telescope git_files<CR>", opts)
-KEYMAP("n", "<leader>fb", ":Telescope buffers<CR>", opts)
+KEYMAP("n", "<leader>ff", function() require("telescope.builtin").find_files({hidden = true}) end, opts)
+KEYMAP("n", "<leader>ft", function() require("telescope.builtin").live_grep({additional_args = "-uuu"}) end, opts)
+KEYMAP("n", "<leader>fg", function() require("telescope.builtin").git_files() end, opts)
+KEYMAP("n", "<leader>fb", function() require("telescope.builtin").buffers() end, opts)
 KEYMAP("n", "<leader>fp", ":Telescope projects<CR>", opts)
 
 -- Trouble
