@@ -5,6 +5,8 @@ M.servers = {
   "html",
   "cssls",
   "eslint",
+  "gopls",
+
 }
 
 M.null_ls = {
