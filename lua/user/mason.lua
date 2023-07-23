@@ -43,6 +43,4 @@ function M.config(lazyPlugin, opts)
   })
 end
 
-end
-
 return M
