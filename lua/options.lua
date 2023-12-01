@@ -34,3 +34,4 @@ for k, v in pairs(globals) do
   vim.g[k] = v
 end
 
+vim.api.nvim_set_hl(0,"Normal",{ fg = "none", bg = "none" })
