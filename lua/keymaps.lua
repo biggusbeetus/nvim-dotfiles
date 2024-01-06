@@ -17,8 +17,6 @@ KEYMAP("n", "<C-k>", "<C-w>k", KEYMAP_OPTS)
 KEYMAP("n", "<C-l>", "<C-w>l", KEYMAP_OPTS)
 
 -- Navigate buffers
--- KEYMAP("n", "<S-l>", ":bnext<CR>", KEYMAP_OPTS)
--- KEYMAP("n", "<S-h>", ":bprevious<CR>", KEYMAP_OPTS)
 KEYMAP("n", "<leader>bd", ":bd<CR>", KEYMAP_OPTS)
 KEYMAP("n", "<leader>wd", "<C-w>c", KEYMAP_OPTS)
 KEYMAP("n", "<leader>wv", "<C-w>v", KEYMAP_OPTS)
