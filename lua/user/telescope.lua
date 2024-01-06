@@ -8,36 +8,57 @@ local M = {
 			"ahmedkhalf/project.nvim",
 			commit = "8c6bad7d22eef1b71144b401c9f74ed01526a4fb",
 		},
+		{
+			"nvim-telescope/telescope-file-browser.nvim",
+			dependencies = {
+				"nvim-lua/plenary.nvim",
+			},
+		},
 	},
 }
 
 local actions = require("telescope.actions")
 
 M.opts = {
+	extensions = {
+		file_browser = {
+			theme = "ivy",
+		},
+	},
 	defaults = {
 		prompt_prefix = " ",
 		selection_caret = " ",
 		path_display = { "smart" },
 		file_ignore_patterns = { ".git/", "node_modules" },
+		initial_mode = "insert",
 		mappings = {
 			i = {
 				["<Down>"] = actions.move_selection_next,
 				["<Up>"] = actions.move_selection_previous,
 				["<C-j>"] = actions.move_selection_next,
 				["<C-k>"] = actions.move_selection_previous,
+				["<C-b><C-d>"] = require("telescope.actions").delete_buffer,
+			},
+			n = {
+				["<C-b><C-d>"] = require("telescope.actions").delete_buffer,
 			},
 		},
-    vimgrep_arguments = {
-        'rg',
-        '-uuu',
-        '--color=never',
-        '--no-heading',
-        '--with-filename',
-        '--line-number',
-        '--column',
-        '--smart-case',
-    },
+		vimgrep_arguments = {
+			"rg",
+			"-u",
+			"--color=never",
+			"--no-heading",
+			"--with-filename",
+			"--line-number",
+			"--column",
+			"--smart-case",
+		},
 	},
 }
+
+function M.config(_, opts)
+	require("telescope").setup(opts)
+	require("telescope").load_extension("file_browser")
+end
 
 return M
