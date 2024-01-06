@@ -59,6 +59,27 @@ M.opts = {
 function M.config(_, opts)
 	require("telescope").setup(opts)
 	require("telescope").load_extension("file_browser")
+
+	-- Telescope
+	KEYMAP("n", "<leader>ff", function()
+		require("telescope.builtin").find_files({ hidden = true })
+	end, KEYMAP_OPTS)
+	KEYMAP("n", "<leader>fo", function()
+		require("telescope.builtin").oldfiles()
+	end, KEYMAP_OPTS)
+	KEYMAP("n", "<leader>ft", function()
+		require("telescope.builtin").live_grep({ additional_args = "-u" })
+	end, KEYMAP_OPTS)
+	KEYMAP("n", "<leader>fg", function()
+		require("telescope.builtin").git_files()
+	end, KEYMAP_OPTS)
+	KEYMAP("n", "<leader>ls", function()
+		require("telescope.builtin").buffers()
+	end, KEYMAP_OPTS)
+	KEYMAP("n", "<leader>bf", function()
+		require("telescope").extensions.file_browser.file_browser()
+	end, KEYMAP_OPTS)
+	KEYMAP("n", "<leader>fp", ":Telescope projects<CR>", KEYMAP_OPTS)
 end
 
 return M

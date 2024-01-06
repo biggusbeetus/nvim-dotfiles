@@ -4,4 +4,8 @@ local M = {
 	event = "VimEnter",
 }
 
+function M.config(plugin, opts)
+	-- Fugitive
+	KEYMAP("n", "<leader>gs", vim.cmd.Git, KEYMAP_OPTS)
+end
 return M

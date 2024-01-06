@@ -10,7 +10,8 @@ local M = {
   }
 }
 
-function M.config()
+function M.config(_, opts)
+  require('leap').setup(opts)
   require('leap').add_default_mappings()
 end
 

@@ -5,7 +5,7 @@ M = {
 }
 
 function M.config(plugin, options)
-  plugin.setup(options)
+  require(plugin.name).setup(options)
 
   KEYMAP("n", "<leader>zf", function () require('fzf-lua').files() end, KEYMAP_OPTS)
 end

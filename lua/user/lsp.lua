@@ -30,7 +30,7 @@ function M.config()
 		local opts = { buffer = bufnr, remap = false }
 
 		KEYMAP("n", "gd", function()
-      vim.lsp.buf.definition()
+			vim.lsp.buf.definition()
 		end, opts)
 		KEYMAP("n", "K", function()
 			vim.lsp.buf.hover()
@@ -51,7 +51,7 @@ function M.config()
 			vim.lsp.buf.code_action()
 		end, opts)
 		KEYMAP("n", "<leader>vrr", function()
-      vim.lsp.buf.references()
+			vim.lsp.buf.references()
 		end, opts)
 		KEYMAP("n", "<leader>vrn", function()
 			vim.lsp.buf.rename()
@@ -59,6 +59,9 @@ function M.config()
 		KEYMAP("i", "<C-h>", function()
 			vim.lsp.buf.signature_help()
 		end, opts)
+		KEYMAP("n", "<leader>lf", function()
+			vim.lsp.buf.format({ async = true })
+		end, KEYMAP_OPTS)
 	end
 
 	local on_attach = function(client, bufnr)
@@ -86,34 +89,34 @@ function M.config()
 		vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
 	end
 
-  local config = {
-    virtual_text = true,
-    signs = {
-      active = sign_icons,
-    },
-    update_in_insert = true,
-    underline = true,
-    severity_sort = true,
-    float = {
-      focusable = false,
-      style = "minimal",
-      border = "rounded",
-      source = "always",
-      header = "",
-      prefix = "",
-      suffix = "",
-    },
-  }
+	local config = {
+		virtual_text = true,
+		signs = {
+			active = sign_icons,
+		},
+		update_in_insert = true,
+		underline = true,
+		severity_sort = true,
+		float = {
+			focusable = false,
+			style = "minimal",
+			border = "rounded",
+			source = "always",
+			header = "",
+			prefix = "",
+			suffix = "",
+		},
+	}
 
-  vim.diagnostic.config(config)
+	vim.diagnostic.config(config)
 
-  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-    border = "rounded",
-  })
+	vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+		border = "rounded",
+	})
 
-  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-    border = "rounded",
-  })
+	vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+		border = "rounded",
+	})
 end
 
 return M
