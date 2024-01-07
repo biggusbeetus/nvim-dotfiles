@@ -1,6 +1,6 @@
 KEYMAP_OPTS = { noremap = true, silent = true }
 KEYMAP = vim.keymap.set
-local keymap_namespace = vim.api.nvim_create_namespace('custom_keymaps')
+local keymap_namespace = vim.api.nvim_create_namespace("custom_keymaps")
 
 KEYMAP("v", "J", ":m '>+1<CR>gv=gv")
 KEYMAP("v", "K", ":m '<-2<CR>gv=gv")
@@ -17,8 +17,25 @@ KEYMAP("n", "<C-k>", "<C-w>k", KEYMAP_OPTS)
 KEYMAP("n", "<C-l>", "<C-w>l", KEYMAP_OPTS)
 
 -- Navigate buffers
-KEYMAP("n", "<leader>bd", ":bd<CR>", KEYMAP_OPTS)
-KEYMAP("n", "<leader>b", ":b", KEYMAP_OPTS)
+KEYMAP("n", "<leader>bd", function()
+	if vim.v.count > 0 then
+		local success, err = pcall(vim.cmd, "':b' .. tostring(vim.v.count)")
+		if not success then
+			vim.notify("Could not delete buffer " .. vim.v.count .. ".", vim.log.levels.WARN)
+		end
+  else
+		local success, err = pcall(vim.cmd, ":bd")
+		if not success then
+			vim.notify("Could not delete current buffer.", vim.log.levels.WARN)
+		end
+	end
+end, KEYMAP_OPTS)
+KEYMAP("n", "<TAB>", function()
+	local success, err = pcall(vim.cmd, "':b' .. tostring(vim.v.count)")
+	if not success then
+		vim.notify("Could not jump to buffer " .. vim.v.count .. ".", vim.log.levels.WARN)
+	end
+end, KEYMAP_OPTS)
 
 -- Naviagate windows
 KEYMAP("n", "<leader>wd", "<C-w>c", KEYMAP_OPTS)
