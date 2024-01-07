@@ -26,6 +26,7 @@ local globals = {
 	netrw_browse_split = 0,
 	netrw_banner = 0,
 	netrw_winsize = 25,
+  skip_ts_context_commentstring_module = true
 }
 
 for k, v in pairs(options) do

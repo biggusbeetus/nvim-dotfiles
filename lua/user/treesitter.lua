@@ -1,23 +1,23 @@
 local M = {
 	"nvim-treesitter/nvim-treesitter",
-	commit = "226c1475a46a2ef6d840af9caa0117a439465500",
+	commit = "5032f9952ad2a3a7f7792ac438c4f9e2bd53e0b9",
 	event = "BufReadPost",
 	dependencies = {
 		{
 			"JoosepAlviste/nvim-ts-context-commentstring",
 			event = "VeryLazy",
-			commit = "729d83ecb990dc2b30272833c213cc6d49ed5214",
+			commit = "1277b4a1f451b0f18c0790e1a7f12e1e5fdebfee",
 		},
 		{
 			"nvim-tree/nvim-web-devicons",
 			event = "VeryLazy",
 			commit = "0568104bf8d0c3ab16395433fcc5c1638efc25d4",
 		},
-    {
-      "HiPhish/rainbow-delimiters.nvim",
-      event = "VeryLazy",
-      commit = "f7a55274a74053ccfafc24005b6f46303d543288",
-    }
+		{
+			"HiPhish/rainbow-delimiters.nvim",
+			event = "VeryLazy",
+			commit = "f7a55274a74053ccfafc24005b6f46303d543288",
+		},
 	},
 }
 function M.config()
@@ -25,6 +25,7 @@ function M.config()
 	local configs = require("nvim-treesitter.configs")
 
 	local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+	require("ts_context_commentstring").setup({})
 
 	parser_config.liquid = {
 		install_info = {
@@ -36,7 +37,17 @@ function M.config()
 	}
 
 	configs.setup({
-		ensure_installed = { "lua", "markdown", "markdown_inline", "bash", "latex", "liquid", "css", "html", "javascript" },
+		ensure_installed = {
+			"lua",
+			"markdown",
+			"markdown_inline",
+			"bash",
+			"latex",
+			"liquid",
+			"css",
+			"html",
+			"javascript",
+		},
 		ignore_install = { "" },
 		sync_install = false,
 

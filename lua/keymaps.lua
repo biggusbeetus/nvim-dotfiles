@@ -1,6 +1,6 @@
 KEYMAP_OPTS = { noremap = true, silent = true }
-
 KEYMAP = vim.keymap.set
+local keymap_namespace = vim.api.nvim_create_namespace('custom_keymaps')
 
 KEYMAP("v", "J", ":m '>+1<CR>gv=gv")
 KEYMAP("v", "K", ":m '<-2<CR>gv=gv")
@@ -18,6 +18,9 @@ KEYMAP("n", "<C-l>", "<C-w>l", KEYMAP_OPTS)
 
 -- Navigate buffers
 KEYMAP("n", "<leader>bd", ":bd<CR>", KEYMAP_OPTS)
+KEYMAP("n", "<leader>b", ":b", KEYMAP_OPTS)
+
+-- Naviagate windows
 KEYMAP("n", "<leader>wd", "<C-w>c", KEYMAP_OPTS)
 KEYMAP("n", "<leader>wv", "<C-w>v", KEYMAP_OPTS)
 KEYMAP("n", "<leader>ws", "<C-w>s", KEYMAP_OPTS)
@@ -37,3 +40,6 @@ KEYMAP("n", "<leader>e", "<cmd>Explore<CR>", KEYMAP_OPTS)
 -- Go to config files
 KEYMAP("n", "<leader>vpp", "<cmd>e ~/.config/nvim/<CR>", KEYMAP_OPTS)
 
+-- Leap
+local leap = require("leap")
+leap.add_default_mappings()
