@@ -1,6 +1,6 @@
 local M = {
 	"nvim-treesitter/nvim-treesitter",
-	commit = "5032f9952ad2a3a7f7792ac438c4f9e2bd53e0b9",
+	commit = "8cd2b230174efbf7b5d9f49fe2f90bda6b5eb16e",
 	event = "BufReadPost",
 	dependencies = {
 		{
@@ -47,6 +47,7 @@ function M.config()
 			"css",
 			"html",
 			"javascript",
+      "fennel",
 		},
 		ignore_install = { "" },
 		sync_install = false,
