@@ -19,7 +19,8 @@ KEYMAP("n", "<C-l>", "<C-w>l", KEYMAP_OPTS)
 -- Navigate buffers
 KEYMAP("n", "<leader>bd", function()
 	if vim.v.count > 0 then
-		local success, err = pcall(vim.cmd, "':b' .. tostring(vim.v.count)")
+    local arg = ':bd' .. tostring(vim.v.count)
+		local success, err = pcall(vim.cmd, arg)
 		if not success then
 			vim.notify("Could not delete buffer " .. vim.v.count .. ".", vim.log.levels.WARN)
 		end
@@ -30,8 +31,10 @@ KEYMAP("n", "<leader>bd", function()
 		end
 	end
 end, KEYMAP_OPTS)
+
 KEYMAP("n", "<TAB>", function()
-	local success, err = pcall(vim.cmd, "':b' .. tostring(vim.v.count)")
+  local arg = ':b' .. tostring(vim.v.count)
+	local success, err = pcall(vim.cmd, arg)
 	if not success then
 		vim.notify("Could not jump to buffer " .. vim.v.count .. ".", vim.log.levels.WARN)
 	end
