@@ -17,31 +17,10 @@ KEYMAP("n", "<C-k>", "<C-w>k", KEYMAP_OPTS)
 KEYMAP("n", "<C-l>", "<C-w>l", KEYMAP_OPTS)
 
 -- Navigate buffers
-KEYMAP("n", "<leader>bd", function()
-	if vim.v.count > 0 then
-    local arg = ':bd' .. tostring(vim.v.count)
-		local success, err = pcall(vim.cmd, arg)
-		if not success then
-			vim.notify("Could not delete buffer " .. vim.v.count .. ".", vim.log.levels.WARN)
-		end
-  else
-		local success, err = pcall(vim.cmd, ":bd")
-		if not success then
-			vim.notify("Could not delete current buffer.", vim.log.levels.WARN)
-		end
-	end
-end, KEYMAP_OPTS)
-
-KEYMAP("n", "<TAB>", function()
-  local arg = ':b' .. tostring(vim.v.count)
-	local success, err = pcall(vim.cmd, arg)
-	if not success then
-		vim.notify("Could not jump to buffer " .. vim.v.count .. ".", vim.log.levels.WARN)
-	end
-end, KEYMAP_OPTS)
+KEYMAP("n", "<leader>c", ":bd<CR>", KEYMAP_OPTS)
 
 -- Naviagate windows
-KEYMAP("n", "<leader>wd", "<C-w>c", KEYMAP_OPTS)
+KEYMAP("n", "<leader>wc", "<C-w>c", KEYMAP_OPTS)
 KEYMAP("n", "<leader>wv", "<C-w>v", KEYMAP_OPTS)
 KEYMAP("n", "<leader>ws", "<C-w>s", KEYMAP_OPTS)
 KEYMAP("n", "<leader>wo", "<C-w>o", KEYMAP_OPTS)
