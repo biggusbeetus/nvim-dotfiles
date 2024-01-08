@@ -24,7 +24,7 @@ local M = {
 		sections = {
 			lualine_a = { "mode" },
 			lualine_b = { "branch", "diff", "diagnostics" },
-			lualine_c = {},
+			lualine_c = { {"filename", path = 1}},
 			lualine_x = {},
 			lualine_y = { "progress" },
 			lualine_z = { "location" },
@@ -37,18 +37,7 @@ local M = {
 			lualine_y = {},
 			lualine_z = {},
 		},
-		tabline = {
-			lualine_c = {
-				{
-					"buffers",
-					show_filename_only = false, -- Shows shortened relative path when set to false.
-					hide_filename_extension = true, -- Hide filename extension when set to true.
-					show_modified_status = true, -- Shows indicator when the buffer is modified.
-					mode = 4,
-          max_length = vim.o.columns,
-				},
-			},
-		},
+		tabline = {},
 		winbar = {},
 		inactive_winbar = {},
 		extensions = {},
