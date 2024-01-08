@@ -13,7 +13,6 @@ local M = {
 }
 
 function M.config(plugin, opts)
-
 	require(plugin.name).setup(opts)
 
 	-- Harpoon keymaps
@@ -21,18 +20,12 @@ function M.config(plugin, opts)
 	local ui = require("harpoon.ui")
 
 	KEYMAP("n", "<leader>a", mark.add_file, KEYMAP_OPTS)
-	KEYMAP("n", "<C-e>", ui.toggle_quick_menu, KEYMAP_OPTS)
-	KEYMAP("n", "<leader>1", function()
-		ui.nav_file(1)
-	end, KEYMAP_OPTS)
-	KEYMAP("n", "<leader>2", function()
-		ui.nav_file(2)
-	end, KEYMAP_OPTS)
-	KEYMAP("n", "<leader>3", function()
-		ui.nav_file(3)
-	end, KEYMAP_OPTS)
-	KEYMAP("n", "<leader>4", function()
-		ui.nav_file(4)
-	end, KEYMAP_OPTS)
+	KEYMAP("n", "<leader>h", ui.toggle_quick_menu, KEYMAP_OPTS)
+
+	for i = 1, 9, 1 do
+		KEYMAP("n", "<leader>" .. tostring(i), function()
+			ui.nav_file(i)
+		end, KEYMAP_OPTS)
+	end
 end
 return M
