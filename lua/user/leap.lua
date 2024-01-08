@@ -60,7 +60,7 @@ function M.config(_, opts)
 	local leap = require("leap")
 	leap.setup(opts)
 
-	KEYMAP("n", " ", function()
+	KEYMAP("n,v", " ", function()
 		leap_linewise()
 	end, KEYMAP_OPTS)
 end
