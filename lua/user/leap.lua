@@ -56,11 +56,12 @@ function leap_linewise(skip_range)
 		targets = get_line_starts(winid, skip_range),
 	})
 end
+
 function M.config(_, opts)
 	local leap = require("leap")
 	leap.setup(opts)
 
-	KEYMAP("n,v", " ", function()
+	KEYMAP({ "n", "v" }, " ", function()
 		leap_linewise()
 	end, KEYMAP_OPTS)
 end

@@ -16,9 +16,6 @@ KEYMAP("n", "<C-j>", "<C-w>j", KEYMAP_OPTS)
 KEYMAP("n", "<C-k>", "<C-w>k", KEYMAP_OPTS)
 KEYMAP("n", "<C-l>", "<C-w>l", KEYMAP_OPTS)
 
--- Navigate buffers
-KEYMAP("n", "<leader>c", ":bd<CR>", KEYMAP_OPTS)
-
 -- Naviagate windows
 KEYMAP("n", "<leader>wc", "<C-w>c", KEYMAP_OPTS)
 KEYMAP("n", "<leader>wv", "<C-w>v", KEYMAP_OPTS)
