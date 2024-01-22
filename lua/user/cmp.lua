@@ -99,6 +99,7 @@ function M.config()
       ["<CR>"] = cmp.mapping.confirm { select = true },
       ["<Tab>"] = nil,
       ["<S-Tab>"] = nil,
+<<<<<<< HEAD
       -- ["<Tab>"] = cmp.mapping(function(fallback)
       --   if cmp.visible() then
       --     cmp.select_next_item()
@@ -127,6 +128,8 @@ function M.config()
       --   "i",
       --   "s",
       -- }),
+=======
+>>>>>>> main
     },
     formatting = {
       fields = { "kind", "abbr", "menu" },

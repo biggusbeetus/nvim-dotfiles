@@ -1,12 +1,12 @@
 local M = {
 	"neovim/nvim-lspconfig",
-	commit = "649137cbc53a044bffde36294ce3160cb18f32c7",
+	commit = "796394fd19fb878e8dbc4fd1e9c9c186ed07a5f4",
 	lazy = false,
 	event = { "BufReadPre" },
 	dependencies = {
 		{
 			"hrsh7th/cmp-nvim-lsp",
-			commit = "0e6b2ed705ddcff9738ec4ea838141654f12eeef",
+			commit = "5af77f54de1b16c34b23cba810150689a3a90312",
 		},
 	},
 }
@@ -72,6 +72,9 @@ function M.config()
 		KEYMAP("i", "<C-h>", function()
 			vim.lsp.buf.signature_help()
 		end, opts)
+		KEYMAP("n", "<leader>lf", function()
+			vim.lsp.buf.format({ async = true })
+		end, KEYMAP_OPTS)
 	end
 
 	local on_attach = function(client, bufnr)
@@ -99,34 +102,34 @@ function M.config()
 		vim.fn.sign_define(sign.name, { texthl = sign.name, text = sign.text, numhl = "" })
 	end
 
-  local config = {
-    virtual_text = true,
-    signs = {
-      active = sign_icons,
-    },
-    update_in_insert = true,
-    underline = true,
-    severity_sort = true,
-    float = {
-      focusable = false,
-      style = "minimal",
-      border = "rounded",
-      source = "always",
-      header = "",
-      prefix = "",
-      suffix = "",
-    },
-  }
+	local config = {
+		virtual_text = true,
+		signs = {
+			active = sign_icons,
+		},
+		update_in_insert = true,
+		underline = true,
+		severity_sort = true,
+		float = {
+			focusable = false,
+			style = "minimal",
+			border = "rounded",
+			source = "always",
+			header = "",
+			prefix = "",
+			suffix = "",
+		},
+	}
 
-  vim.diagnostic.config(config)
+	vim.diagnostic.config(config)
 
-  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-    border = "rounded",
-  })
+	vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+		border = "rounded",
+	})
 
-  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-    border = "rounded",
-  })
+	vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+		border = "rounded",
+	})
 end
 
 return M

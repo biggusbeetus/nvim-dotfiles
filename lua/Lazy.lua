@@ -17,7 +17,7 @@ vim.g.maplocalleader = ";"
 -- load lazy
 require("lazy").setup("user", {
   install = { colorscheme = { require("user.colorscheme").name } },
-  defaults = { lazy = true, version = "4c8b625bc873ca76b76eee0c28c98f1f7148f17f" },
+  defaults = { lazy = true, version = "96584866b9c5e998cbae300594d0ccfd0c464627" },
   ui = { wrap = "true" },
   change_detection = { enabled = true },
   debug = false,

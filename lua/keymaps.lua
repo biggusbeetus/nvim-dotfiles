@@ -1,6 +1,6 @@
-local opts = { noremap = true, silent = true }
-
+KEYMAP_OPTS = { noremap = true, silent = true }
 KEYMAP = vim.keymap.set
+local keymap_namespace = vim.api.nvim_create_namespace("custom_keymaps")
 
 KEYMAP("v", "J", ":m '>+1<CR>gv=gv")
 KEYMAP("v", "K", ":m '<-2<CR>gv=gv")
@@ -11,80 +11,31 @@ KEYMAP("n", "<C-u>", "<C-u>zz")
 KEYMAP("n", "n", "nzzzv")
 KEYMAP("n", "N", "Nzzzv")
 
-KEYMAP("n", "<C-h>", "<C-w>h", opts)
-KEYMAP("n", "<C-j>", "<C-w>j", opts)
-KEYMAP("n", "<C-k>", "<C-w>k", opts)
-KEYMAP("n", "<C-l>", "<C-w>l", opts)
+KEYMAP("n", "<C-h>", "<C-w>h", KEYMAP_OPTS)
+KEYMAP("n", "<C-j>", "<C-w>j", KEYMAP_OPTS)
+KEYMAP("n", "<C-k>", "<C-w>k", KEYMAP_OPTS)
+KEYMAP("n", "<C-l>", "<C-w>l", KEYMAP_OPTS)
 
--- Navigate buffers
-KEYMAP("n", "<S-l>", ":bnext<CR>", opts)
-KEYMAP("n", "<S-h>", ":bprevious<CR>", opts)
-KEYMAP("n", "<leader>c", ":bd<CR>", opts)
+-- Naviagate windows
+KEYMAP("n", "<leader>wc", "<C-w>c", KEYMAP_OPTS)
+KEYMAP("n", "<leader>wv", "<C-w>v", KEYMAP_OPTS)
+KEYMAP("n", "<leader>ws", "<C-w>s", KEYMAP_OPTS)
+KEYMAP("n", "<leader>wo", "<C-w>o", KEYMAP_OPTS)
+KEYMAP("n", "<leader>we", "<C-w>=", KEYMAP_OPTS)
 
 -- Greatest keymap ever: ThePrimeagen
-KEYMAP("x", "<leader>p", [["_dP]], opts)
+KEYMAP("x", "<leader>p", [["_dP]], KEYMAP_OPTS)
 -- next greatest remap ever : asbjornHaland
-KEYMAP({ "n", "v" }, "<leader>y", [["+y]], opts)
-KEYMAP("n", "<leader>Y", [["+Y]], opts)
-KEYMAP({ "n", "v" }, "<leader>d", [["_d]], opts)
-
--- Harpoon keymaps
-local mark = require("harpoon.mark")
-local ui = require("harpoon.ui")
-
-KEYMAP("n", "<leader>a", mark.add_file, opts)
-KEYMAP("n", "<C-e>", ui.toggle_quick_menu, opts)
-KEYMAP("n", "<leader>1", function()
-	ui.nav_file(1)
-end, opts)
-KEYMAP("n", "<leader>2", function()
-	ui.nav_file(2)
-end, opts)
-KEYMAP("n", "<leader>3", function()
-	ui.nav_file(3)
-end, opts)
-KEYMAP("n", "<leader>4", function()
-	ui.nav_file(4)
-end, opts)
-
--- Leap
-require("leap").add_default_mappings()
+KEYMAP({ "n", "v" }, "<leader>y", [["+y]], KEYMAP_OPTS)
+KEYMAP("n", "<leader>Y", [["+Y]], KEYMAP_OPTS)
+KEYMAP({ "n", "v" }, "<leader>d", [["_d]], KEYMAP_OPTS)
 
 -- Netrw
-KEYMAP("n", "<leader>e", "<cmd>Explore<CR>", opts)
-
--- Telescope
-KEYMAP("n", "<leader>ff", ":Telescope find_files<CR>", opts)
-KEYMAP("n", "<leader>ft", ":Telescope live_grep<CR>", opts)
-KEYMAP("n", "<leader>fg", ":Telescope git_files<CR>", opts)
-KEYMAP("n", "<leader>fb", ":Telescope buffers<CR>", opts)
-KEYMAP("n", "<leader>fp", ":Telescope projects<CR>", opts)
-
--- Trouble
-KEYMAP("n", "<leader>xx", "<cmd>TroubleToggle<cr>", opts)
-KEYMAP("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>", opts)
-KEYMAP("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>", opts)
-KEYMAP("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>", opts)
-KEYMAP("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>", opts)
-KEYMAP("n", "gR", "<cmd>TroubleToggle lsp_references<cr>", opts)
-
--- Lsp
-KEYMAP("n", "<leader>lf", "<cmd>lua vim.lsp.buf.format{ async = true }<cr>", opts)
-
--- Fugitive
-KEYMAP("n", "<leader>gs", vim.cmd.Git, opts)
+KEYMAP("n", "<leader>e", "<cmd>Explore<CR>", KEYMAP_OPTS)
 
 -- Go to config files
-KEYMAP("n", "<leader>vpp", "<cmd>e ~/.config/nvim/<CR>", opts)
+KEYMAP("n", "<leader>vpp", "<cmd>e ~/.config/nvim/<CR>", KEYMAP_OPTS)
 
--- Undotree
-KEYMAP(
-	"n",
-	"<leader>u",
-	vim.cmd.UndotreeToggle,
-	opts
-)
-
--- Cellular automaton
-KEYMAP("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>", opts)
-KEYMAP("n", "<leader>ol", "<cmd>CellularAutomaton game_of_life<CR>", opts)
+-- Leap
+local leap = require("leap")
+leap.add_default_mappings()
