@@ -4,6 +4,7 @@ local M = {
   cmd = "Mason",
   event = { "BufReadPre", "BufNewFile" },
   opts = {
+    install_root_dir = path.concat { os.getenv "HOME", ".mason" },
     ui = {
       border = "none",
       icons = {
