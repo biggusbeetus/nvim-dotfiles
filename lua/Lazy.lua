@@ -1,4 +1,4 @@
-local lazypath = os.getenv("HOME") .. "/lazy/lazy.nvim"
+local lazypath = os.getenv("HOME") .. "/.lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({
     "git",
@@ -18,6 +18,7 @@ vim.g.maplocalleader = ";"
 require("lazy").setup("user", {
   install = { colorscheme = { require("user.colorscheme").name} },
   defaults = { lazy = true, version = "96584866b9c5e998cbae300594d0ccfd0c464627" },
+  lockfile = os.getenv("HOME") .. "/.lazy/lazy-lock.json",
   ui = { wrap = "true" },
   change_detection = { enabled = true },
   debug = false,
