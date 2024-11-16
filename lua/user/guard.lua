@@ -2,7 +2,6 @@ local M = {
     "nvimdev/guard.nvim",
     -- lazy load by ft
     ft = { "lua", "go", "markdown" },
-    name = 'guard',
     -- Builtin configuration, optional
     dependencies = {
         "nvimdev/guard-collection",
@@ -10,8 +9,7 @@ local M = {
 }
 
 function M.config(plugin)
-    local guard = require(plugin.name)
-    local ft = require(plugin.name .. '.filetype')
+    local ft = require('guard.filetype')
 
 -- Assuming you have guard-collection
 -- Put this in your ftplugin/lang.lua to lazy load guard
