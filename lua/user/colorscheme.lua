@@ -2,6 +2,7 @@ local M = {
     'neanias/everforest-nvim',
     lazy = false,
     priority = 1000,
+    name = 'everforest',
     opts = {
         background = "hard",
     }
