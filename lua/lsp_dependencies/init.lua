@@ -9,4 +9,9 @@ M.servers = {
   "tsserver",
 }
 
+M.other = {
+  "stylua",
+  "selene",
+}
+
 return M

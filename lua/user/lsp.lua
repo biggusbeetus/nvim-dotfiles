@@ -59,9 +59,6 @@ function M.config()
 		KEYMAP("i", "<C-h>", function()
 			vim.lsp.buf.signature_help()
 		end, opts)
-		KEYMAP("n", "<leader>lf", function()
-			vim.lsp.buf.format({ async = true })
-		end, KEYMAP_OPTS)
 	end
 
 	local on_attach = function(client, bufnr)
