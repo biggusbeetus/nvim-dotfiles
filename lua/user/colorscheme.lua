@@ -1,10 +1,9 @@
 local M = {
-    'EdenEast/nightfox.nvim',
+    'neanias/everforest-nvim"',
     lazy = false,
     priority = 1000,
-    name = "nightfox",
-    scheme = "terafox",
     opts = {
+        background = "hard",
     }
 }
 
