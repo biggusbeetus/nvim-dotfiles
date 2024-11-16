@@ -1,9 +1,9 @@
 local M = {
-    'neanias/everforest-nvim',
+    'comfysage/evergarden',
     version = false,
     lazy = false,
     priority = 1000,
-    name = 'everforest',
+    name = 'evergarden',
     opts = {
         background = "hard"
     }
