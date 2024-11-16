@@ -1,8 +1,8 @@
 local M = {}
 
 M.servers = {
-	"lua_ls",
-	"gopls",
+  "lua_ls",
+  "gopls",
   "yamlls",
   "pylsp",
   "volar",
@@ -11,7 +11,7 @@ M.servers = {
 
 M.other = {
   "stylua",
-  "selene",
+  "selene"
 }
 
 return M

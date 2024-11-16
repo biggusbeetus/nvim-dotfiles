@@ -2,6 +2,7 @@ local M = {
     "nvimdev/guard.nvim",
     -- lazy load by ft
     ft = { "lua", "go", "markdown" },
+    name = 'guard',
     -- Builtin configuration, optional
     dependencies = {
         "nvimdev/guard-collection",
@@ -9,13 +10,17 @@ local M = {
 }
 
 function M.config(plugin)
-    local ft = require('guard.filetype')
+    local ft = require(plugin.name .. '.filetype')
 
 -- Assuming you have guard-collection
 -- Put this in your ftplugin/lang.lua to lazy load guard
 ft('lua'):fmt('stylua')
           :append('lsp')
           :lint('selene')
+
+ft('go'):fmt('gofumpt')
+        :append('lsp')
+        :lint('golangci-lint')
 
 -- change this anywhere in your config, these are the defaults
 vim.g.guard_config = {
@@ -26,6 +31,6 @@ vim.g.guard_config = {
     -- whether or not to save the buffer after formatting
     save_on_fmt = true,
 }
-		KEYMAP("n", "<leader>lf", "Guard fmt", KEYMAP_OPTS)
+		KEYMAP("n", "<leader>lf", ":Guard fmt", KEYMAP_OPTS)
 end
 return M
