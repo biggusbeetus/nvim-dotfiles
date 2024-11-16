@@ -11,7 +11,7 @@ local M = {
 function M.config(plugin, opts)
 
   require(plugin.name).setup(opts)
-  local status_ok, _ = pcall(vim.cmd.colorscheme, plugin.scheme)
+  local status_ok, _ = pcall(vim.cmd.colorscheme, plugin.name)
   if not status_ok then
     print("Could not apply colorscheme")
     return
