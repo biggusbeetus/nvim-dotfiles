@@ -30,6 +30,6 @@ vim.g.guard_config = {
     -- whether or not to save the buffer after formatting
     save_on_fmt = true,
 }
-		KEYMAP("n", "<leader>lf", ":Guard fmt", KEYMAP_OPTS)
+		KEYMAP("n", "<leader>lf", ":Guard fmt<CR>", KEYMAP_OPTS)
 end
 return M
