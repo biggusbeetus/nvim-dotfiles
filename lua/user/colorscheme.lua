@@ -1,5 +1,5 @@
 local M = {
-    'neanias/everforest-nvim"',
+    'neanias/everforest-nvim',
     lazy = false,
     priority = 1000,
     opts = {
