@@ -20,7 +20,7 @@ ft('lua'):fmt('stylua')
 
 ft('go'):fmt('gofumpt')
         :append('lsp')
-        :lint('golangci-lint')
+        :lint('golangci')
 
 -- change this anywhere in your config, these are the defaults
 vim.g.guard_config = {
