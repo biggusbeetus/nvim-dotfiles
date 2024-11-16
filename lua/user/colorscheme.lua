@@ -5,7 +5,7 @@ local M = {
     priority = 1000,
     name = 'evergarden',
     opts = {
-        background = "hard"
+        contrast_dark = "hard"
     }
 }
 
