@@ -11,7 +11,7 @@ local M = {
 
 function M.config(plugin)
     local guard = require(plugin.name)
-    local ft = guard.filetype
+    local ft = require(plugin.name .. '.filetype')
 
 -- Assuming you have guard-collection
 -- Put this in your ftplugin/lang.lua to lazy load guard
@@ -28,8 +28,6 @@ vim.g.guard_config = {
     -- whether or not to save the buffer after formatting
     save_on_fmt = true,
 }
-		KEYMAP("n", "<leader>lf", function()
-        guard.fmt()
-		end, KEYMAP_OPTS)
+		KEYMAP("n", "<leader>lf", "Guard fmt", KEYMAP_OPTS)
 end
 return M
