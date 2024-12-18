@@ -7,6 +7,7 @@ M.servers = {
   "pylsp",
   "volar",
   "tsserver",
+  "sqlls"
 }
 
 M.other = {
