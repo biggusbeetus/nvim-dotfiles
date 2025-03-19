@@ -7,9 +7,7 @@ local M = {
 
 function M.config(plugin)
 
-  require(plugin.name)
   vim.g.everforest_background = 'soft'
-
   local status_ok, _ = pcall(vim.cmd.colorscheme, plugin.name)
   if not status_ok then
     print("Could not apply colorscheme")
