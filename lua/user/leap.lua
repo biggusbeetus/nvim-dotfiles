@@ -63,7 +63,6 @@ function M.config(_, opts)
 	KEYMAP({ "n", "v" }, "<leader><CR>", function()
 		leap_linewise()
 	end, KEYMAP_OPTS)
-    require("leap")
 end
 
 return M
