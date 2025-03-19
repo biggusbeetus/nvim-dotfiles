@@ -37,10 +37,6 @@ KEYMAP("n", "<leader>e", "<cmd>Ex<CR>", KEYMAP_OPTS)
 -- Go to config files
 KEYMAP("n", "<leader>vpp", "<cmd>e ~/.config/nvim/<CR>", KEYMAP_OPTS)
 
--- Leap
-local leap = require("leap")
-leap.add_default_mappings()
-
 -- Spectre
 local spectre = require("spectre")
 KEYMAP("n", "<leader>SS", function () spectre.toggle() end, KEYMAP_OPTS)
