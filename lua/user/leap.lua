@@ -57,7 +57,7 @@ function leap_linewise(skip_range)
 	})
 end
 
-function M.config(_, opts)
+function M.config()
     KEYMAP({'n', 's'}, " ", '<Plug>(leap-anywhere)')
     KEYMAP({'x', 's',}, " ", '<Plug>(leap)')
 	KEYMAP({ "n", "v" }, "<leader><CR>", function()
