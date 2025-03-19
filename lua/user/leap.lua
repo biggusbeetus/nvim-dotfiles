@@ -58,9 +58,10 @@ function leap_linewise(skip_range)
 end
 
 function M.config(_, opts)
-    KEYMAP({'n', 's'}, " ", '<Plug>(leap-anywhere)')
-    KEYMAP({'x', 's',}, " ", '<Plug>(leap)')
-	KEYMAP({ "n", "v" }, "<CR>", function()
+    require("leap")
+    vim.keymap.set('n', 's', '<Plug>(leap-anywhere)')
+    vim.keymap.set('x', 's', '<Plug>(leap)')
+	KEYMAP({ "n", "v" }, "<leader><CR>", function()
 		leap_linewise()
 	end, KEYMAP_OPTS)
 end
