@@ -1,7 +1,7 @@
 local M = {
     "nvimdev/guard.nvim",
     -- lazy load by ft
-    ft = { "lua", "go", "markdown" },
+    ft = { "lua", "go", "markdown", "typescript", "html" },
     name = 'guard',
     -- Builtin configuration, optional
     dependencies = {

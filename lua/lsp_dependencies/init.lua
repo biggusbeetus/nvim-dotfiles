@@ -6,7 +6,7 @@ M.servers = {
   "yamlls",
   "pylsp",
   "volar",
-  "tsserver",
+  "ts_ls",
   "sqlls"
 }
 

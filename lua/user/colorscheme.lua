@@ -1,17 +1,15 @@
 local M = {
-    'comfysage/evergarden',
-    version = false,
+    'sainnhe/everforest',
     lazy = false,
     priority = 1000,
-    name = 'evergarden',
-    opts = {
-        contrast_dark = "hard"
-    }
+    name = 'everforest',
 }
 
-function M.config(plugin, opts)
+function M.config(plugin)
 
-  require(plugin.name).setup(opts)
+  require(plugin.name)
+  vim.g.everforest_background = 'soft'
+
   local status_ok, _ = pcall(vim.cmd.colorscheme, plugin.name)
   if not status_ok then
     print("Could not apply colorscheme")
