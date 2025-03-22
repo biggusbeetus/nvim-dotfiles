@@ -7,7 +7,8 @@ M.servers = {
   "pylsp",
   "volar",
   "tsserver",
-  "sqlls"
+  "sqlls",
+  "shopify_theme_ls"
 }
 
 M.other = {
