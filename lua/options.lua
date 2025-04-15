@@ -1,6 +1,5 @@
 local options = {
    number = true,
-   relativenumber = true,
    numberwidth = 4,
    expandtab = true,
    cindent = true,
