@@ -58,8 +58,8 @@ end
 
 function M.config(_, opts)
     require("leap").setup(opts)
-    KEYMAP({'n', 's'}, "s", '<Plug>(leap-anywhere)')
-    KEYMAP({'x', 's',}, "s", '<Plug>(leap)')
+    KEYMAP({'n', 's'}, "<leader>S", '<Plug>(leap-anywhere)')
+    KEYMAP({'x', 's',}, "<leader>S", '<Plug>(leap)')
 	KEYMAP({ "n", "v" }, "<leader><CR>", function()
 		leap_linewise()
 	end, KEYMAP_OPTS)

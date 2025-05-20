@@ -42,3 +42,9 @@ local spectre = require("spectre")
 KEYMAP("n", "<leader>SS", function () spectre.toggle() end, KEYMAP_OPTS)
 KEYMAP("n", "<leader>SW", function () spectre.open_visual({select_word=true}) end, KEYMAP_OPTS)
 KEYMAP("n", "<leader>SF", function () spectre.open_file_search({select_word=true}) end, KEYMAP_OPTS)
+
+-- leap
+require("leap").setup(opts)
+KEYMAP({'n', 's'}, "<leader>S", '<Plug>(leap-anywhere)')
+KEYMAP({'n', 's'}, "<leader> ", '<Plug>(leap-anywhere)')
+KEYMAP({'x', 's',}, "<leader>S", '<Plug>(leap)')
