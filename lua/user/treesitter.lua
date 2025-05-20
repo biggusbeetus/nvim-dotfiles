@@ -1,6 +1,6 @@
 local M = {
 	"nvim-treesitter/nvim-treesitter",
-	commit = "8cd2b230174efbf7b5d9f49fe2f90bda6b5eb16e",
+	commit = "066fd6505377e3fd4aa219e61ce94c2b8bdb0b79",
 	event = "VimEnter",
 	dependencies = {
 	{
