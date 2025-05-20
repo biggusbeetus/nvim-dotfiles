@@ -44,5 +44,5 @@ KEYMAP("n", "<leader>SW", function () spectre.open_visual({select_word=true}) en
 KEYMAP("n", "<leader>SF", function () spectre.open_file_search({select_word=true}) end, KEYMAP_OPTS)
 
 -- leap
-require("leap")
-KEYMAP({'n', 'x', 'o'}, "<space>", '<Plug>(leap)', KEYMAP_OPTS)
+local leap = require("leap")
+KEYMAP({'n', 'x', 'o'}, "<space>", function() leap.leap() end, KEYMAP_OPTS)
