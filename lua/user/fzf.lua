@@ -1,7 +1,8 @@
 M = {
-  "ibhagwan/fzf-lua",
-  event = "VimEnter",
-  dependencies = { "nvim-tree/nvim-web-devicons" },
+     "ibhagwan/fzf-lua",
+     commit = "66e620a7a724364809e78a1ae4b5bfe73e37df49",
+     event = "VimEnter",
+     dependencies = { "nvim-tree/nvim-web-devicons" },
 }
 
 function M.config(plugin, options)
