@@ -27,14 +27,6 @@ local M = {
 
 function M.config(lazyPlugin, opts)
   require("mason").setup(opts)
-
-  local dependencies = require("lsp_dependencies")
-
-  require("mason-lspconfig").setup({
-    ensure_installed = dependencies.servers,
-    automatic_installation = true,
-  })
-
 end
 
 return M

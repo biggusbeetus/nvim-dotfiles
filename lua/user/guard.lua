@@ -14,9 +14,7 @@ function M.config(plugin)
 
 -- Assuming you have guard-collection
 -- Put this in your ftplugin/lang.lua to lazy load guard
-ft('lua'):fmt('stylua')
-          :append('lsp')
-          :lint('selene')
+ft('lua'):fmt('lsp')
 
 ft('go'):fmt('gofumpt')
         :append('lsp')
