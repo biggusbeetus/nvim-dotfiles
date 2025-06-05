@@ -4,20 +4,16 @@ local M = {
 	event = "VimEnter",
 	dependencies = {
 	{
-			"HiPhish/rainbow-delimiters.nvim",
+		"HiPhish/rainbow-delimiters.nvim",
 	    event = "BufReadPost",
-			commit = "f7a55274a74053ccfafc24005b6f46303d543288",
+			commit = "55ad4fb76ab68460f700599b7449385f0c4e858e",
 		},
 	},
 }
 function M.config()
 	local treesitter = require("nvim-treesitter")
-	local configs = require("nvim-treesitter.configs")
-
-	local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-
-	configs.setup({
-		ensure_installed = {
+    treesitter.setup()
+    treesitter.install {
 			"lua",
 			"bash",
             "javascript",
@@ -26,20 +22,8 @@ function M.config()
             "markdown",
             "markdown_inline",
             "nix",
-            "yaml",
-		},
-		ignore_install = { "" },
-		sync_install = false,
-
-		highlight = {
-			enable = true, -- false will disable the whole extension
-			disable = {}, -- list of language that will be disabled
-		},
-		autopairs = {
-			enable = true,
-		},
-		indent = { enable = true, disable = {} },
-	})
+            "yaml"
+        }
 end
 
 return M

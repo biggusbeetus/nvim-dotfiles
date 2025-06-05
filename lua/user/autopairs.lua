@@ -1,5 +1,5 @@
 local M = {
-  commit = "c6139ca0d5ad7af129ea6c89cb4c56093f2c034a",
+  commit = "4d74e75913832866aa7de35e4202463ddf6efd1b",
   'windwp/nvim-autopairs',
   event = "InsertEnter",
   opts = {

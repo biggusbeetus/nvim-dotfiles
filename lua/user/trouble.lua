@@ -1,6 +1,6 @@
 local M = {
   "folke/trouble.nvim",
-  commit = "88a40f1cc3af846b520ae167f0177b5faa148c86",
+  commit = "85bedb7eb7fa331a2ccbecb9202d8abba64d37b3",
   opts = {}, -- for default options, refer to the configuration section for custom setup. 
   lazy = false,
 }

@@ -1,6 +1,6 @@
 M = {
      "ibhagwan/fzf-lua",
-     commit = "66e620a7a724364809e78a1ae4b5bfe73e37df49",
+     commit = "a768d39d44a7e69c04ee980efa8e0925a19b3c2b",
      event = "VimEnter",
      dependencies = { "nvim-tree/nvim-web-devicons" },
 }
