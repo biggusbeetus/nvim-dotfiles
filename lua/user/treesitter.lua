@@ -7,6 +7,7 @@ local M = {
 	}
 }
 function M.config(_, opts)
+    vim.opt.runtimepath:prepend("~/.treesitter")
 	local treesitter = require("nvim-treesitter")
     treesitter.setup(opts)
     treesitter.install {
