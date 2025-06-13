@@ -7,16 +7,17 @@ local M = {
 		install_dir = dir
     }
 }
-function M.config(_, opts)
-    vim.opt.runtimepath:prepend(dir)
-	local treesitter = require("nvim-treesitter")
-    treesitter.setup(opts)
-    treesitter.install {
+local treesitter_langs = {
 	"lua",
 	"bash",
     "go",
     "python"
-        }
+}
+function M.config(_, opts)
+    vim.opt.runtimepath:prepend(dir)
+	local treesitter = require("nvim-treesitter")
+    treesitter.setup(opts)
+    treesitter.install(treesitter_langs)
     vim.api.nvim_create_autocmd('FileType', {
         pattern = treesitter_langs,
         callback = function()
