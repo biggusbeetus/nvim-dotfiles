@@ -1,6 +1,6 @@
 local M = {
   "williamboman/mason.nvim",
-  commit = "4546dec8b56bc56bc1d81e717e4a935bc7cd6477",
+  commit = "8024d64e1330b86044fed4c8494ef3dcd483a67c",
   cmd = "Mason",
   event = { "BufReadPre", "BufNewFile" },
   opts = {
