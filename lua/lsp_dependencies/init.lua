@@ -13,7 +13,6 @@ M.servers = {
 
 M.other = {
   "stylua",
-  "selene"
 }
 
 return M
