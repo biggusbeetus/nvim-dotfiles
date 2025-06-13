@@ -37,3 +37,14 @@ KEYMAP("n", "<leader>e", "<cmd>Ex<CR>", KEYMAP_OPTS)
 -- Go to config files
 KEYMAP("n", "<leader>vpp", "<cmd>e ~/.config/nvim/<CR>", KEYMAP_OPTS)
 
+-- Spectre
+local spectre = require("spectre")
+KEYMAP("n", "<leader>SS", function () spectre.toggle() end, KEYMAP_OPTS)
+KEYMAP("n", "<leader>SW", function () spectre.open_visual({select_word=true}) end, KEYMAP_OPTS)
+KEYMAP("n", "<leader>SF", function () spectre.open_file_search({select_word=true}) end, KEYMAP_OPTS)
+
+-- Conform
+local conform = require("conform")
+KEYMAP("n", "<leader>f", function()
+    conform.format({ bufnr = 0 })
+end)

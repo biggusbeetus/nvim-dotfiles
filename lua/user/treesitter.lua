@@ -17,6 +17,12 @@ function M.config(_, opts)
     "go",
     "python"
         }
+    vim.api.nvim_create_autocmd('FileType', {
+        pattern = treesitter_langs,
+        callback = function()
+          vim.treesitter.start()
+        end,
+    })
 end
 
 return M

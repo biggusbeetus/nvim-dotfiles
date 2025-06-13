@@ -47,41 +47,6 @@ function M.config()
   local luasnip = require "luasnip"
   require("luasnip.loaders.from_snipmate").lazy_load()
 
-  local check_backspace = function()
-    local col = vim.fn.col "." - 1
-    return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
-  end
-
-  local kind_icons = {
-    Text = "󰉿",
-    Method = "m",
-    Function = "󰊕",
-    Constructor = "",
-    Field = "",
-    Variable = "󰆧",
-    Class = "󰌗",
-    Interface = "",
-    Module = "",
-    Property = "",
-    Unit = "",
-    Value = "󰎠",
-    Enum = "",
-    Keyword = "󰌋",
-    Snippet = "",
-    Color = "󰏘",
-    File = "󰈙",
-    Reference = "",
-    Folder = "󰉋",
-    EnumMember = "",
-    Constant = "󰇽",
-    Struct = "",
-    Event = "",
-    Operator = "󰆕",
-    TypeParameter = "󰊄",
-    Codeium = "󰚩",
-    Copilot = "",
-  }
-
   cmp.setup {
     snippet = {
       expand = function(args)
@@ -98,8 +63,6 @@ function M.config()
         i = cmp.mapping.abort(),
         c = cmp.mapping.close(),
       },
-      -- Accept currently selected item. If none selected, `select` first item.
-      -- Set `select` to `false` to only confirm explicitly selected items.
       ["<CR>"] = cmp.mapping.confirm { select = true },
       ['<C-f>'] = cmp.mapping(function(fallback)
             if luasnip.jumpable(1) then
@@ -115,41 +78,6 @@ function M.config()
           fallback()
         end
     end, {'i', 's'}),
-    -- ['<Tab>'] = cmp.mapping(function(fallback)
-    --         if cmp.visible() then
-    --       cmp.select_next_item(select_opts)
-    --     elseif luasnip.expand_or_jumpable() then
-    --         luasnip.expand_or_jump()
-    --     else
-    --       fallback()
-    --     end
-    -- end, {'i', 's'}),
-    -- ['<S-Tab>'] = cmp.mapping(function(fallback)
-    --         if cmp.visible() then
-    --       cmp.select_prev_item(select_opts)
-    --     elseif luasnip.jumpable(-1) then
-    --         luasnip.jump(-1)
-    --     else
-    --       fallback()
-    --     end
-    -- end, {'i', 's'}),
---       ["<Tab>"] = nil,
---       ["<S-Tab>"] = nil,
-    },
-    formatting = {
-      fields = { "kind", "abbr", "menu" },
-      format = function(entry, vim_item)
-        vim_item.kind = kind_icons[vim_item.kind]
-        vim_item.menu = ({
-          nvim_lsp = "",
-          nvim_lua = "",
-          luasnip = "",
-          buffer = "",
-          path = "",
-          emoji = "",
-        })[entry.source.name]
-        return vim_item
-      end,
     },
     sources = {
       { name = "nvim_lsp" },
@@ -162,14 +90,8 @@ function M.config()
       behavior = cmp.ConfirmBehavior.Replace,
       select = false,
     },
-    window = {
-      completion = cmp.config.window.bordered(),
-      documentation = cmp.config.window.bordered(),
-    },
-    experimental = {
-      ghost_text = true,
-    },
   }
+
 end
 
 return M

@@ -30,6 +30,7 @@ local function default_trouble_quick_fix(args)
       require("trouble").open "quickfix"
     end, 0)
 end
+
 autocmd("filetype", {
 	group = bbalanza_augroup,
 	pattern = "netrw",
@@ -45,3 +46,4 @@ autocmd("filetype", {
     default_trouble_quick_fix(args)
   end,
 })
+
