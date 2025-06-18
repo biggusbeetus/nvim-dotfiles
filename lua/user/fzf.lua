@@ -12,7 +12,7 @@ function M.config(plugin, options)
   KEYMAP("n", "<leader>gb", function () fzf.grep_curbuf() end, KEYMAP_OPTS)
   KEYMAP("n", "<leader>gg", function () fzf.live_grep() end, KEYMAP_OPTS)
   KEYMAP("n", "<leader>gx", function () fzf.quickfix() end, KEYMAP_OPTS)
-  KEYMAP("n", "<leader>gs", function () fzf.buffers() end, KEYMAP_OPTS)
+  KEYMAP("n", "<leader>ls", function () fzf.buffers() end, KEYMAP_OPTS)
   KEYMAP("n", "<leader>go", function () fzf.oldfiles() end, KEYMAP_OPTS)
 end
 
