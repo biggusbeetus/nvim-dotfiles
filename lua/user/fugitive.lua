@@ -6,7 +6,6 @@ local M = {
 
 function M.config(plugin, opts)
 	-- Fugitive
-    vim.keymap.del("n", "<leader>gs")
 	KEYMAP("n", "<leader>gs", vim.cmd.Git, KEYMAP_OPTS)
 end
 return M
