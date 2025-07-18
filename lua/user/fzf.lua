@@ -14,6 +14,7 @@ function M.config(plugin, options)
   KEYMAP("n", "<leader>gx", function () fzf.quickfix() end, KEYMAP_OPTS)
   KEYMAP("n", "<leader>gB", function () fzf.buffers() end, KEYMAP_OPTS)
   KEYMAP("n", "<leader>go", function () fzf.oldfiles() end, KEYMAP_OPTS)
+  vim.keymap.del("n", "<leader>gs")
 end
 
 return M
