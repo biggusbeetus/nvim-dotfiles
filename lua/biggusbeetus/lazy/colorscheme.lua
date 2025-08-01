@@ -1,5 +1,8 @@
 local M = {
     'sainnhe/everforest',
+    event = {
+        "VimEnter",
+    },
     lazy = false,
     priority = 1000,
     name = 'everforest',
@@ -13,6 +16,9 @@ function M.config(plugin)
     print("Could not apply colorscheme")
     return
   end
+
+  vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+  vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 end
 
 return M

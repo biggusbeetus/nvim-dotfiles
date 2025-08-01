@@ -26,6 +26,7 @@ return {
         "L3MON4D3/LuaSnip",
         "saadparwaiz1/cmp_luasnip",
         "j-hui/fidget.nvim",
+        "creativenull/efmls-configs-nvim",
     },
 
     config = function()
@@ -48,7 +49,8 @@ return {
         require("mason-lspconfig").setup({
             ensure_installed = {
                 "lua_ls",
-                "gopls"
+                "gopls",
+                "efm"
             },
             handlers = {
                 function(server_name) -- default handler (optional)
@@ -75,6 +77,20 @@ return {
                         }
                     }
                 end,
+                ["efm"] = function()
+                    require "lspconfig".efm.setup {
+                    init_options = {documentFormatting = true},
+                    settings = {
+                        rootMarkers = {".git/"},
+                        languages = {
+                            sh = {
+                                require('efmls-configs.linters.shellcheck'),
+                                require('efmls-configs.formatters.shfmt'),
+                            }
+                        }
+                    }
+                }
+                end,
             }
         })
 
@@ -87,9 +103,9 @@ return {
                 end,
             },
             mapping = cmp.mapping.preset.insert({
-                ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
-                ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-                ['<C-y>'] = cmp.mapping.confirm({ select = true }),
+                ['<C-k>'] = cmp.mapping.select_prev_item(cmp_select),
+                ['<C-j>'] = cmp.mapping.select_next_item(cmp_select),
+                ['<C-CR>'] = cmp.mapping.confirm({ select = true }),
                 ["<C-Space>"] = cmp.mapping.complete(),
             }),
             sources = cmp.config.sources({
