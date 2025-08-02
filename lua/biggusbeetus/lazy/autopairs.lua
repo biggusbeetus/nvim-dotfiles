@@ -2,6 +2,12 @@ local M = {
 	"windwp/nvim-autopairs",
 	event = "BufReadPre",
 	config = true,
+	dependencies = {
+		{
+			"windwp/nvim-ts-autotag",
+			event = "BufReadPre",
+		},
+	},
 }
 
 function M.config()
@@ -18,5 +24,6 @@ function M.config()
 			enable_close_on_slash = false, -- Auto close on trailing </
 		},
 	})
+
 end
 return M
