@@ -1,30 +1,41 @@
 local dir = os.getenv("HOME") .. "/.treesitter"
-local M = {
-	"nvim-treesitter/nvim-treesitter",
-	commit = "f976acdc9c8214145a11372d2a7ae4a032f62a39",
-	event = "VimEnter",
-    opts = {
-		install_dir = dir
-    }
-}
 local treesitter_langs = {
 	"lua",
 	"bash",
-    "go",
-    "python"
+	"go",
+	"python",
+	"html",
 }
+local M = {
+	"nvim-treesitter/nvim-treesitter",
+	lazy = false,
+	opts = {
+		parser_install_dir = dir,
+		ensure_installed = treesitter_langs,
+		highlight = {
+			enable = true,
+			additional_vim_regex_highlighting = false,
+		},
+		incremental_selection = {
+			enable = true,
+			keymaps = {
+				init_selection = "gnn", -- set to `false` to disable one of the mappings
+				node_incremental = "grn",
+				scope_incremental = "grc",
+				node_decremental = "grm",
+			},
+		},
+		indent = {
+			enable = true,
+		},
+	},
+}
+
 function M.config(_, opts)
     vim.opt.runtimepath:prepend(dir)
-	local treesitter = require("nvim-treesitter")
-    treesitter.setup(opts)
-    treesitter.install(treesitter_langs)
-    vim.api.nvim_create_autocmd('FileType', {
-        pattern = treesitter_langs,
-        callback = function()
-          vim.treesitter.start()
-        end,
-    })
+	local treesitter = require("nvim-treesitter.configs")
+	treesitter.setup(opts)
+    vim.treesitter.language.register('html', 'liquid')
 end
 
 return M
-
