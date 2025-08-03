@@ -40,4 +40,3 @@ if vim.fn.isdirectory(options.undodir) ~= true then
 	vim.fn.mkdir(options.undodir, "p", "755")
 end
 
-vim.api.nvim_set_hl(0, "Normal", { fg = "none", bg = "none" })

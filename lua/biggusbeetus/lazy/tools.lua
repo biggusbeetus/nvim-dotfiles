@@ -23,9 +23,6 @@ return {
 	},
 
 	config = function()
-		require("conform").setup({
-			formatters_by_ft = {},
-		})
 		local cmp = require("cmp")
 		local cmp_lsp = require("cmp_nvim_lsp")
 		local capabilities = vim.tbl_deep_extend(
@@ -40,12 +37,37 @@ return {
 			install_root_dir = os.getenv("HOME") .. "/.mason",
 		})
 
+		local conform = require("conform")
+		local formatters = { "prettier", "stylua" }
+		for _, pkg in ipairs(formatters) do
+			-- Needs to load after mason.setup, else no packages are
+			-- registered
+			if not require("mason-registry").is_installed(pkg) then
+				require("mason.api.command").MasonInstall({ pkg })
+			end
+		end
+		conform.setup({
+			formatters_by_ft = {
+				lua = { "stylua", lsp_format = "fallback" },
+				go = { "gofmt", lsp_format = "fallback" },
+				bash = { "shfmt" },
+				sh = { "shfmt" },
+				javascript = { "prettier" },
+				typescript = { "prettier" },
+				yaml = { "prettier" },
+			},
+		})
+		KEYMAP("n", "<leader>f", function()
+			conform.format({ bufnr = 0 })
+		end)
+
 		local servers = {
 			"lua_ls",
 			"gopls",
 			"efm",
 			"html",
 			"shopify_theme_ls",
+			"ts_ls",
 		}
 
 		require("mason-lspconfig").setup({
@@ -56,7 +78,7 @@ return {
 			function(server_name) -- default handler (optional)
 				vim.lsp.config(server_name, {
 					capabilities = capabilities,
-                    root_markers = root_files,
+					root_markers = root_files,
 				})
 			end,
 			["lua_ls"] = function()
@@ -81,7 +103,7 @@ return {
 				vim.lsp.config("html", {
 					capabilities = capabilities,
 					filetypes = { "html", "templ", "liquid" },
-                    root_markers = root_files,
+					root_markers = root_files,
 				})
 			end,
 			["efm"] = function()
@@ -120,7 +142,7 @@ return {
 			mapping = cmp.mapping.preset.insert({
 				["<C-k>"] = cmp.mapping.select_prev_item(cmp_select),
 				["<C-j>"] = cmp.mapping.select_next_item(cmp_select),
-				["<CR>"] = cmp.mapping.confirm({ select = true }),
+				["<C-CR>"] = cmp.mapping.confirm({ select = true }),
 				["<C-Space>"] = cmp.mapping.complete(),
 			}),
 			sources = cmp.config.sources({
