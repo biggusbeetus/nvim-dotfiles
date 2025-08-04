@@ -4,8 +4,8 @@ local treesitter_langs = {
 	"bash",
 	"go",
 	"python",
-	"html",
     "liquid",
+    "html",
 }
 local M = {
 	"nvim-treesitter/nvim-treesitter",

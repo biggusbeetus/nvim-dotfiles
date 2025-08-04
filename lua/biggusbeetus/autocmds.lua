@@ -47,6 +47,13 @@ autocmd("filetype", {
   end,
 })
 
+autocmd("filetype", {
+    pattern = "liquid",
+    callback = function ()
+        vim.cmd.TSDisable "highlight"
+    end
+})
+
 autocmd('LspAttach', {
     group = bbalanza_augroup,
     callback = function(e)
