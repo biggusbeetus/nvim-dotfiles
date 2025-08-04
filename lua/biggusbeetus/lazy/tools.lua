@@ -54,6 +54,8 @@ return {
 				sh = { "shfmt" },
 				javascript = { "prettier" },
 				typescript = { "prettier" },
+                css = {"prettier"},
+                scss = {"prettier"},
 				yaml = { "prettier" },
 			},
 		})
@@ -68,6 +70,8 @@ return {
 			"html",
 			"shopify_theme_ls",
 			"ts_ls",
+            "ast_grep",
+            "cssls"
 		}
 
 		require("mason-lspconfig").setup({
@@ -142,7 +146,7 @@ return {
 			mapping = cmp.mapping.preset.insert({
 				["<C-k>"] = cmp.mapping.select_prev_item(cmp_select),
 				["<C-j>"] = cmp.mapping.select_next_item(cmp_select),
-				["<C-CR>"] = cmp.mapping.confirm({ select = true }),
+				["<C-y>"] = cmp.mapping.confirm({ select = true }),
 				["<C-Space>"] = cmp.mapping.complete(),
 			}),
 			sources = cmp.config.sources({
@@ -157,7 +161,6 @@ return {
 			-- update_in_insert = true,
 			float = {
 				focusable = false,
-				style = "minimal",
 				border = "rounded",
 				source = "always",
 				header = "",
