@@ -17,6 +17,7 @@ return {
 		"hrsh7th/cmp-cmdline",
 		"hrsh7th/nvim-cmp",
 		"L3MON4D3/LuaSnip",
+        "rafamadriz/friendly-snippets",
 		"saadparwaiz1/cmp_luasnip",
 		"j-hui/fidget.nvim",
 		"creativenull/efmls-configs-nvim",
@@ -47,6 +48,7 @@ return {
 			end
 		end
 		conform.setup({
+            lsp_format = "fallback",
 			formatters_by_ft = {
 				lua = { "stylua", lsp_format = "fallback" },
 				go = { "gofmt", lsp_format = "fallback" },
@@ -57,6 +59,7 @@ return {
                 css = {"prettier"},
                 scss = {"prettier"},
 				yaml = { "prettier" },
+                liquid = {lsp_format = "prefer"},
 			},
 		})
 		KEYMAP("n", "<leader>f", function()
@@ -135,6 +138,7 @@ return {
 			end
 		end
 
+        require("luasnip.loaders.from_vscode").lazy_load()
 		local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
 		cmp.setup({
