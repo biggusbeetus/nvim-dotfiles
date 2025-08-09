@@ -1,7 +1,3 @@
-local root_files = {
-	".git",
-}
-
 return {
 	"neovim/nvim-lspconfig",
 	event = {
@@ -17,7 +13,7 @@ return {
 		"hrsh7th/cmp-cmdline",
 		"hrsh7th/nvim-cmp",
 		"L3MON4D3/LuaSnip",
-        "rafamadriz/friendly-snippets",
+		"rafamadriz/friendly-snippets",
 		"saadparwaiz1/cmp_luasnip",
 		"j-hui/fidget.nvim",
 		"creativenull/efmls-configs-nvim",
@@ -48,7 +44,7 @@ return {
 			end
 		end
 		conform.setup({
-            lsp_format = "fallback",
+			lsp_format = "fallback",
 			formatters_by_ft = {
 				lua = { "stylua", lsp_format = "fallback" },
 				go = { "gofmt", lsp_format = "fallback" },
@@ -56,10 +52,10 @@ return {
 				sh = { "shfmt" },
 				javascript = { "prettier" },
 				typescript = { "prettier" },
-                css = {"prettier"},
-                scss = {"prettier"},
+				css = { "prettier" },
+				scss = { "prettier" },
 				yaml = { "prettier" },
-                liquid = {lsp_format = "prefer"},
+				liquid = { lsp_format = "prefer" },
 			},
 		})
 		KEYMAP("n", "<leader>f", function()
@@ -71,10 +67,8 @@ return {
 			"gopls",
 			"efm",
 			"html",
-			"shopify_theme_ls",
 			"ts_ls",
-            "ast_grep",
-            "cssls"
+			"cssls",
 		}
 
 		require("mason-lspconfig").setup({
@@ -85,7 +79,7 @@ return {
 			function(server_name) -- default handler (optional)
 				vim.lsp.config(server_name, {
 					capabilities = capabilities,
-					root_markers = root_files,
+					root_markers = { ".git" },
 				})
 			end,
 			["lua_ls"] = function()
@@ -117,6 +111,7 @@ return {
 				vim.lsp.config("efm", {
 					capabilities = capabilities,
 					init_options = { documentFormatting = true },
+					filetypes = { "sh", "bash" },
 					settings = {
 						rootMarkers = { ".git/" },
 						languages = {
@@ -138,16 +133,22 @@ return {
 			end
 		end
 
-        require("luasnip.loaders.from_vscode").lazy_load()
+		require("luasnip.loaders.from_vscode").lazy_load()
 		local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
 		cmp.setup({
+            window = {
+                completion = cmp.config.window.bordered("double"),
+
+            },
 			snippet = {
 				expand = function(args)
 					require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
 				end,
 			},
 			mapping = cmp.mapping.preset.insert({
+				["<C-b>"] = cmp.mapping.scroll_docs(-6),
+				["<C-f>"] = cmp.mapping.scroll_docs(6),
 				["<C-k>"] = cmp.mapping.select_prev_item(cmp_select),
 				["<C-j>"] = cmp.mapping.select_next_item(cmp_select),
 				["<C-y>"] = cmp.mapping.confirm({ select = true }),
@@ -162,10 +163,10 @@ return {
 		})
 
 		vim.diagnostic.config({
-			-- update_in_insert = true,
+			virtual_text = { current_line = true },
 			float = {
 				focusable = false,
-				border = "rounded",
+				border = "double",
 				source = "always",
 				header = "",
 				prefix = "",
