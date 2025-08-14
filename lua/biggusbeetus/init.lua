@@ -1,5 +1,0 @@
-require "biggusbeetus.globals"
-require "biggusbeetus.lazy_init"
-require "biggusbeetus.keymaps"
-require "biggusbeetus.autocmds"
-require "biggusbeetus.options"

@@ -1,1 +1,5 @@
-require "biggusbeetus"
+require "globals"
+require "lazy_init"
+require "keymaps"
+require "autocmds"
+require "options"
