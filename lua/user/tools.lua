@@ -14,6 +14,7 @@ return {
 		"hrsh7th/nvim-cmp",
 		"L3MON4D3/LuaSnip",
 		"rafamadriz/friendly-snippets",
+		-- "honza/vim-snippets",
 		"saadparwaiz1/cmp_luasnip",
 		"j-hui/fidget.nvim",
 		"creativenull/efmls-configs-nvim",
@@ -133,26 +134,75 @@ return {
 			end
 		end
 
+		local luasnip = require("luasnip")
 		require("luasnip.loaders.from_vscode").lazy_load()
+		require("luasnip.loaders.from_snipmate").lazy_load()
 		local cmp_select = { behavior = cmp.SelectBehavior.Select }
 
 		cmp.setup({
-            window = {
-                completion = cmp.config.window.bordered("double"),
-
-            },
+			window = {
+				completion = cmp.config.window.bordered("double"),
+			},
 			snippet = {
 				expand = function(args)
 					require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
 				end,
 			},
 			mapping = cmp.mapping.preset.insert({
-				["<C-b>"] = cmp.mapping.scroll_docs(-6),
-				["<C-f>"] = cmp.mapping.scroll_docs(6),
-				["<C-k>"] = cmp.mapping.select_prev_item(cmp_select),
-				["<C-j>"] = cmp.mapping.select_next_item(cmp_select),
-				["<C-y>"] = cmp.mapping.confirm({ select = true }),
+				["<C-u>"] = cmp.mapping.scroll_docs(-6),
+				["<C-d>"] = cmp.mapping.scroll_docs(6),
 				["<C-Space>"] = cmp.mapping.complete(),
+				["<C-e>"] = cmp.mapping(function(fallback)
+					if cmp.visible() then
+						if luasnip.expandable() then
+							luasnip.expand()
+						else
+							fallback()
+						end
+					end
+				end),
+				["<C-y>"] = cmp.mapping(function(fallback)
+					if cmp.visible() then
+						cmp.confirm({
+							select = true,
+						})
+					else
+						fallback()
+					end
+				end),
+
+				["<C-j>"] = cmp.mapping(function(fallback)
+					if cmp.visible() then
+						cmp.select_next_item()
+					elseif luasnip.locally_jumpable(1) then
+						luasnip.jump(1)
+					else
+						fallback()
+					end
+				end, { "i", "s" }),
+				["<C-k>"] = cmp.mapping(function(fallback)
+					if cmp.visible() then
+						cmp.select_prev_item()
+					elseif luasnip.locally_jumpable(-1) then
+						luasnip.jump(-1)
+					else
+						fallback()
+					end
+				end, { "i", "s" }),
+				["<C-f>"] = cmp.mapping(function(fallback)
+					if luasnip.locally_jumpable(1) then
+						luasnip.jump(1)
+					else
+						fallback()
+					end
+				end, { "i", "s" }),
+				["<C-b>"] = cmp.mapping(function(fallback)
+					if luasnip.locally_jumpable(-1) then
+						luasnip.jump(-1)
+					else
+						fallback()
+					end
+				end, { "i", "s" }),
 			}),
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp" },
@@ -161,6 +211,9 @@ return {
 				{ name = "buffer" },
 			}),
 		})
+		local cmp_autopairs = require("nvim-autopairs.completion.cmp")
+		cmp = require("cmp")
+		cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
 		vim.diagnostic.config({
 			virtual_text = { current_line = true },
