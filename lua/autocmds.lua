@@ -35,6 +35,17 @@ autocmd("filetype", {
     end
 })
 
+autocmd('TextYankPost', {
+    group = bbalanza_augroup,
+    pattern = '*',
+    callback = function()
+        vim.highlight.on_yank({
+            higroup = 'IncSearch',
+            timeout = 40,
+        })
+    end,
+})
+
 autocmd('LspAttach', {
     group = bbalanza_augroup,
     callback = function(e)

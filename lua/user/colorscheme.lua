@@ -6,7 +6,7 @@ local M = {
 function M.config()
 	require("rose-pine").setup({
 		variant = "auto", -- auto, main, moon, or dawn
-		disable_background = true,
+		-- disable_background = true,
 		styles = {
 			italic = false,
 		},

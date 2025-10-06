@@ -49,6 +49,7 @@ return {
 			formatters_by_ft = {
 				lua = { "stylua", lsp_format = "fallback" },
 				go = { "gofmt", lsp_format = "fallback" },
+                rust = { "rustfmt", lsp_format = "fallback", },
 				bash = { "shfmt" },
 				sh = { "shfmt" },
 				javascript = { "prettier" },
@@ -56,7 +57,10 @@ return {
 				css = { "prettier" },
 				scss = { "prettier" },
 				yaml = { "prettier" },
-				liquid = { lsp_format = "prefer" },
+                html = { "prettier" },
+				liquid = { "prettier" },
+			},
+            formatters = {
 			},
 		})
 		KEYMAP("n", "<leader>f", function()
@@ -70,6 +74,7 @@ return {
 			"html",
 			"ts_ls",
 			"cssls",
+            "rust_analyzer",
 		}
 
 		require("mason-lspconfig").setup({
@@ -121,6 +126,15 @@ return {
 								require("efmls-configs.formatters.shfmt"),
 							},
 						},
+					},
+				})
+			end,
+			["ts_ls"] = function ()
+				vim.lsp.config("ts_ls", {
+					capabilities = capabilities,
+					init_options = { documentFormatting = true },
+					settings = {
+						rootMarkers = { "tsconfig.json" },
 					},
 				})
 			end,
