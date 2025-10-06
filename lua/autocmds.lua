@@ -63,19 +63,6 @@ autocmd('LspAttach', {
     end
 })
 
--- https://github.com/ThePrimeagen/init.lua/blob/master/lua/theprimeagen/init.lua
-local yank_group = augroup('HighlightYank', {})
-autocmd('TextYankPost', {
-    group = yank_group,
-    pattern = '*',
-    callback = function()
-        vim.highlight.on_yank({
-            higroup = 'IncSearch',
-            timeout = 40,
-        })
-    end,
-})
-
 autocmd({"BufWritePre"}, {
     group = bbalanza_augroup,
     pattern = "*",
