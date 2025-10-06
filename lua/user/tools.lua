@@ -216,14 +216,14 @@ return {
 		cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
 
 		vim.diagnostic.config({
-			virtual_text = { current_line = true },
-			float = {
-				focusable = false,
-				border = "double",
-				source = "always",
-				header = "",
-				prefix = "",
-			},
+      float = {
+                focusable = false,
+                style = "minimal",
+                border = "rounded",
+                source = "always",
+                header = "",
+                prefix = "",
+      }
 		})
 	end,
 }

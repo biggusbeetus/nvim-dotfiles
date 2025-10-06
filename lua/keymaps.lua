@@ -31,6 +31,8 @@ KEYMAP({ "n", "v" }, "<leader>y", [["+y]], KEYMAP_OPTS)
 KEYMAP("n", "<leader>Y", [["+Y]], KEYMAP_OPTS)
 -- KEYMAP({ "n", "v" }, "<leader>d", [["_d]], KEYMAP_OPTS)
 
+KEYMAP("n", "<leader>i", [[i<C-t>]], KEYMAP_OPTS)
+
 -- Netrw
 KEYMAP("n", "<leader>e", "<cmd>Ex<CR>", KEYMAP_OPTS)
 
