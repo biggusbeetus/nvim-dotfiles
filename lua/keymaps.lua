@@ -39,3 +39,12 @@ KEYMAP("n", "<leader>e", "<cmd>Ex<CR>", KEYMAP_OPTS)
 -- Go to config files
 KEYMAP("n", "<leader>vpp", "<cmd>e ~/.config/nvim/<CR>", KEYMAP_OPTS)
 
+-- Change background
+KEYMAP("n", "<leader>bgl", function()
+	vim.opt.background = "light"
+end, KEYMAP_OPTS)
+
+KEYMAP("n", "<leader>bgd", function()
+
+	vim.opt.background = "dark"
+end, KEYMAP_OPTS)
